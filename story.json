@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "title": "Zeta Primus'a İniş",
+    "text": "Üç galaksinin de gözü bu gezegende. Orion İttifakı, Lyra Kollektifi ve Drakon Birliği, gezegenin farklı bölgelerini işgal etmiş durumda.\n\nSen, tarafsız İstasyon Komutanlığı adına görev alan bir saha ajanısın. Şu an gezegen yörüngesindeki küçük bir üs gemisindesin. İlk görevin, yüzeye inip güvenli bölgedeki operasyon üssüne ulaşmak.",
+    "type": "narrative"
+  },
+  {
+    "id": 2,
+    "title": "Güvenli Bölgeye Yaklaşım",
+    "text": "Keşif shuttle'ına biniyorsun. İniş rotası boyunca üç fraksiyonun da sinyallerini alıyorsun.\n\nOrion İttifakı kuzey manyetik alanını kontrol ediyor. Lyra Kollektifi batıdaki veri kulelerini ele geçirmiş. Drakon Birliği ise güneydeki eski maden hatlarını kullanıyor.\n\nİstasyon, hangi hatta yaklaşacağına senin karar vermeni istiyor.",
+    "type": "choice",
+    "choices": [
+      {
+        "key": "A",
+        "text": "Orion İttifakı'nın kontrol ettiği kuzey koridoruna yaklaş.",
+        "result_text": "Kuzey koridoru daha iyi korunuyor ama aynı zamanda daha düzenli. Radarında net devriye rotaları görüyorsun."
+      },
+      {
+        "key": "B",
+        "text": "Lyra Kollektifi'nin veri kulelerinin yakınından dolaş.",
+        "result_text": "Veri kuleleri parazit yayıyor, sensörlerin bozuluyor ama keşfedilme riskin daha düşük."
+      },
+      {
+        "key": "C",
+        "text": "Drakon Birliği'nin maden hatlarına paralel alçak uçuş yap.",
+        "result_text": "Maden tünelleri yüzeyi parçalamış. Riskli ama araya saklanabileceğin çok kırık yüzey var."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Atmosfere Giriş - İlk Zar",
+    "text": "Atmosfere girerken shuttle şiddetle sallanıyor. Seçtiğin rotaya göre savunma sistemleri seni taramaya başlıyor.\n\nŞimdi pilotaj becerine güvenmen gerekiyor. Küçük manevralarla savunma ağlarının arasından sıyrılmaya çalışacaksın.",
+    "type": "roll",
+    "dice": "d6",
+    "target": 4,
+    "success_text": "Shuttle'ı ustaca kontrol ediyorsun. Birkaç lazer izini kalkanların emiyor ama ciddi bir hasar almadan güvenli bölgenin yakınlarına inmeyi başarıyorsun.",
+    "fail_text": "Savunma sistemleri shuttle'ı kilitliyor. Acil kaçış manevrası yapıp planlanandan daha uzak, yarı düşman hattında bir noktaya sert iniş yapıyorsun. Görev daha zor hale geldi."
+  },
+  {
+    "id": 4,
+    "title": "İlk Görev Brifingi",
+    "text": "Nihayet yüzeye ulaştın. Zemin, eski bombardıman kraterleriyle dolu. Ufukta Orion, Lyra ve Drakon bayraklarını aynı anda görebiliyorsun.\n\nGüvenli bölgedeki saha komutanı, ilk görevin için üç seçenek sunuyor:\n- Bir iletişim rölesi arızalanmış, onarılması gerekiyor.\n- Lyra'nın veri kulesinden şifreli paket almak mümkün olabilir.\n- Drakon devriyesi, maden hattı yakınında kaybolmuş; enkazı bulmak stratejik bilgi sağlayabilir.\n\nBu noktadan sonra senaryoyu uzatmak tamamen sana kalmış. story.json dosyasına yeni adımlar ekleyerek devam edebilirsin.",
+    "type": "choice",
+    "choices": [
+      {
+        "key": "A",
+        "text": "İletişim rölesini onarma görevini kabul et.",
+        "result_text": "Komutan, sana eski model bir bakım dronu ve koordinatları veriyor."
+      },
+      {
+        "key": "B",
+        "text": "Lyra veri kulesinden paket alma görevini seç.",
+        "result_text": "Gizlilik öncelikli. Hafif zırh ve sinyal bozucu modüller hazırlanıyor."
+      },
+      {
+        "key": "C",
+        "text": "Drakon devriyesinin enkazını araştırma görevini al.",
+        "result_text": "Bu görev riskli ama ödülü büyük olabilir. Sensör paketleri shuttle'a yükleniyor."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Bölüm Sonu",
+    "text": "Buraya kadar ilk bölüm bitti. Buradan sonrası için yeni adımlar ekleyerek haftalık görevlerini oluşturabilirsin.\n\nHer yeni görev için yeni 'id' değerleriyle yeni nesneler ekle.",
+    "type": "end"
+  }
+]
