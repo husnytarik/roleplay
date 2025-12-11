@@ -1,0 +1,288 @@
+{
+  "start": "wake_up",
+  "nodes": [
+    {
+      "id": "wake_up",
+      "type": "narrative",
+      "title": "Yeniden Uyanış",
+      "text": "Gözlerini açtığında, ECHO-9 istasyonunun kontrol odasında tek başınasın. Konsolların çoğu kapalı, bazıları farklı zamanlardan kalmış gibi paslanmış, bazıları ise yeni monte edilmiş kadar parlak.\n\nTelsizden kendi sesin duyuluyor: \"Eğer bunu dinliyorsan... yine başardın. Ama bu sefer son şansın olabilir.\" Ses kaydı duruyor. Devamı yok.",
+      "next": "mind_roll"
+    },
+    {
+      "id": "mind_roll",
+      "type": "roll",
+      "title": "Zihinsel Stabilite Testi",
+      "text": "Bir an için odanın duvarlarının sana doğru yaklaştığını hissediyorsun. Saniyeler uzayıp kısalıyor, nefes alışların bile birbirine karışıyor.\n\nZihnini toparlamak için odaklanman gerek. Yoksa daha ilk adımı atmadan bu istasyon seni yutabilir.",
+      "dice": "d6",
+      "target": 3,
+      "success_text": "Derin bir nefes alıp yüzüne soğuk hava püskürten havalandırma ızgarasının önünde duruyorsun. Zihnini belli belirsiz bir dengeye getiriyorsun.",
+      "fail_text": "Duvarlar bir an için sıvılaşmış gibi oluyor. Kontrol konsollarının yer değiştirdiğine yemin edebilirsin. Yine de, sendeleye sendeleye ayakta kalmayı başarıyorsun.",
+      "next_success": "corridor_choice",
+      "next_fail": "shadow_voices"
+    },
+    {
+      "id": "shadow_voices",
+      "type": "narrative",
+      "title": "Gölge Sesler",
+      "text": "Telsizdeki frekans kendiliğinden değişiyor. Statik gürültü arasında tekrar kendi sesini duyuyorsun; ama bu sefer tonunda alaycı bir sakinlik var.\n\n\"Bunu daha önce yaşadık\" diyor ses. \"Ve sen her defasında aynı hatayı yaptın.\"",
+      "next": "shadow_choice"
+    },
+    {
+      "id": "shadow_choice",
+      "type": "choice",
+      "title": "Ses Sen Misin?",
+      "text": "Kontrol panelindeki göstergeler anlamsız sayılarla dolu. Ses, istasyonun farklı bölümlerinden yankılanıyor gibi.\n\nBu sesi kendin olarak mı kabul edeceksin yoksa bir tuzak mı sayacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Sese güven; geçmişteki halinin sana yardım etmeye çalıştığına inan.",
+          "result_text": "Kendi sesine güvenmek, şimdilik dünyadaki en mantıklı şey gibi geliyor.",
+          "next": "time_loop_warning"
+        },
+        {
+          "key": "B",
+          "text": "Sesi kes ve bağlantıyı kapat.",
+          "result_text": "Kendi sesin bile sana fazla geliyor. Sessizlik, en azından tahmin edilebilir.",
+          "next": "corridor_choice"
+        }
+      ]
+    },
+    {
+      "id": "time_loop_warning",
+      "type": "narrative",
+      "title": "Zaman Döngüsü Uyarısı",
+      "text": "\"Burada öleceksin\" diyor ses, sakin bir gerçeklik gibi. \"Ama ölmek zorunda değilsin... eğer kendini durdurursan. Ne demek istediğimi hatırlamayacaksın, ama bedenin hatırlayacak.\" Bir an için istasyonun yerçekimi kısa süreliğine tersine dönüyor, sonra tekrar normalleşiyor.\n\nSes kesiliyor. Bir süre yalnızca istasyonun metalik gıcırtıları kalıyor.",
+      "next": "corridor_choice"
+    },
+    {
+      "id": "corridor_choice",
+      "type": "choice",
+      "title": "Zaman Çatlakları",
+      "text": "Kontrol odasının kapısı açıldığında üç farklı koridor görüyorsun. Sanki aynı mekân, üç farklı zaman kesitinde üst üste binmiş gibi.\n\nHer koridorun ışığı, sesi ve kokusu farklı.\n\nHangisine adım atacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "20 yıl önceki koridor – yeni boyanmış duvarlar, canlı konuşmalar.",
+          "result_text": "Taze kahve kokusu ve klavye tıkırtıları burnuna geliyor.",
+          "next": "past_lab"
+        },
+        {
+          "key": "B",
+          "text": "Şu anki koridor – sessiz, steril, ama rahatsız edici şekilde tanıdık.",
+          "result_text": "Adımlarının sesi metal zeminde yankılanıyor. Bu zaman dilimi, senin asıl yerin gibi.",
+          "next": "present_hub"
+        },
+        {
+          "key": "C",
+          "text": "300 yıl sonraki çürümüş koridor – pas, küf ve vakumun sessizliği.",
+          "result_text": "Her adımda zeminin parçalanacağından korkarak ilerliyorsun.",
+          "next": "ruined_deck"
+        }
+      ]
+    },
+    {
+      "id": "past_lab",
+      "type": "narrative",
+      "title": "Geçmiş Laboratuvarı",
+      "text": "Kapıdan geçtiğinde havanın kokusu değişiyor. Duvarlar temiz, paneller parlıyor ve etrafta beyaz tulumlu bilim insanları koşuşturuyor. Ama hiçbiri seni görmüyor.\n\nMonitörlerden birinde, ECHO-9 istasyonunun inşa aşamasındaki halini gösteren bir simülasyon açık. Simülasyonda, merkezde parlak bir çekirdek ve etrafında dönen karmaşık zaman diyagramları görüyorsun.",
+      "next": "memory_roll"
+    },
+    {
+      "id": "memory_roll",
+      "type": "roll",
+      "title": "Bellek Testi",
+      "text": "Ekrandaki diyagramlara baktıkça, kafanın içinde bir yerlerde eski bir acı kıpırdıyor. Bu projede başka bir rolün daha olduğunu hissediyorsun.\n\nHatırlamaya çalışıyorsun. Gerçekten kimdin?",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Bir anda zihninde keskin bir görüntü beliriyor: Aynı laboratuvarda, masanın diğer tarafında sen oturuyorsun. ECHO-9'un zaman çekirdeği tasarımında imzan var.",
+      "fail_text": "Görüntüler üst üste biniyor, sesler yankılanıyor. Ne geçmiş, ne şimdi, ne de gelecek birbirinden ayırt edilebiliyor.",
+      "next_success": "lab_console_choice",
+      "next_fail": "lab_console_choice"
+    },
+    {
+      "id": "lab_console_choice",
+      "type": "choice",
+      "title": "Gizli Konsol",
+      "text": "Laboratuvarın köşesinde, diğerlerinin dikkat etmediği küçük bir konsol görüyorsun. Zaman damgası senin doğum yılınla aynı.\n\nKonsolun ekranında sadece tek bir satır yazıyor: \"Kendine güvenme. Bana da güvenme.\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Konsola dokun, logları açmaya çalış.",
+          "result_text": "Parmakların tuşlara değdiğinde, ekranın parlaklığı artıyor.",
+          "next": "console_logs"
+        },
+        {
+          "key": "B",
+          "text": "Dokunma; buranın sadece bir yankı olduğunu kabul et.",
+          "result_text": "Geçmişi zorlamamaya karar veriyorsun. Zaten fazla kırılgan.",
+          "next": "present_hub"
+        }
+      ]
+    },
+    {
+      "id": "console_logs",
+      "type": "narrative",
+      "title": "Logların Açılışı",
+      "text": "Konsol, kilitli dosyaları senin biyometrik imzanla açıyor. Ekranda kısa bir not beliriyor:\n\n\"Eğer bunu okuyorsan, bu en az üçüncü gelişin. Zaman çöküşünü durdurmanın tek yolu, çekirdeği kapatmak değil; kimin kapattığını değiştirmek.\"",
+      "next": "present_hub"
+    },
+    {
+      "id": "present_hub",
+      "type": "narrative",
+      "title": "Kontrol Merkezi",
+      "text": "Şimdiki zamandaki merkez bölüm, hem tanıdık hem de tuhaf derecede yabancı. Birçok sistem kapanmış, uyarı ışıkları kırmızı veya kehribar tonunda yanıp sönüyor.\n\nAna panelde, Zaman Çekirdeği'nin durumu gösteriliyor: \"KRİTİK / ÇÖKÜŞ EŞİĞİ\" yazıyor. Altında üç seçenek yanıp sönüyor: Kapat, Stabilize Et, Genişlet.",
+      "next": "hub_panel_choice"
+    },
+    {
+      "id": "hub_panel_choice",
+      "type": "choice",
+      "title": "Çekirdek Paneli",
+      "text": "Parmakların panelin üzerinde asılı kalıyor. Daha önce ne yaptığını bilmiyorsun, ama bedenin bazı kombinasyonları tanıyor gibi.\n\nNe yapacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Çekirdek parametrelerini izle, hemen müdahale etme.",
+          "result_text": "Önce anlamak, sonra bozmak istersin.",
+          "next": "core_corridor"
+        },
+        {
+          "key": "B",
+          "text": "Acil kapatma protokolünü başlat.",
+          "result_text": "Radikal bir karar. Sonuçları öngörülemez.",
+          "next": "emergency_shutdown_roll"
+        },
+        {
+          "key": "C",
+          "text": "Zaman alanını genişlet, daha fazla veri topla.",
+          "result_text": "Yangını söndürmeden önce daha büyük bir ateş yakmayı seçiyorsun.",
+          "next": "time_expansion"
+        }
+      ]
+    },
+    {
+      "id": "emergency_shutdown_roll",
+      "type": "roll",
+      "title": "Acil Kapatma",
+      "text": "Ekranda sayısız uyarı penceresi beliriyor: \"Geri dönüşü olmayan işlem\", \"Zaman hattı kırılma riski\", \"Operatör onayı gerekli\".\n\nButonun üzerinde elin titrerken, istasyon derin bir iç çekiş gibi sarsılıyor.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Çekirdek gücü kontrollü biçimde düşmeye başlıyor. Zamanın akışı, kısa bir süreliğine olsa da daha lineer hissediliyor.",
+      "fail_text": "Parametrelerden biri yanlış. Çekirdek tepkimeye giriyor; zaman dalgaları istasyonun katları arasına çarpıp geri dönüyor.",
+      "next_success": "core_corridor",
+      "next_fail": "time_spike"
+    },
+    {
+      "id": "time_expansion",
+      "type": "narrative",
+      "title": "Zaman Alanını Genişletmek",
+      "text": "Paneldeki sürgüyü ileri ittikçe, zaman alanının kapsamı büyüyor. İstasyonun metal duvarları kısa süreliğine şeffaflaşıyor, aynı anda farklı yaşlarda olan versiyonlarını görüyorsun.\n\nKendi bedenini bile bir çocuk, bir yetişkin ve yaşlı bir siluet arasında titreşirken yakalıyorsun.",
+      "next": "time_spike"
+    },
+    {
+      "id": "time_spike",
+      "type": "roll",
+      "title": "Zaman Sıçraması",
+      "text": "Zaman alanı kontrolden çıkmanın eşiğinde. İstasyondaki her nesnenin farklı bir zamana ait gölgeleri üst üste binmiş gibi.\n\nSıçramayı yönetmeyi başarabilirsen, Çekirdek'e çok daha çıplak bir yoldan ulaşacaksın.",
+      "dice": "d6",
+      "target": 5,
+      "success_text": "Sıçramayı, istasyonun merkezine doğru tek yönlü bir dalga haline sıkıştırıyorsun. Yolun, Çekirdek'e doğru açılıyor.",
+      "fail_text": "Sıçrama kontrolsüz patlıyor. Bir an için her yönde binlerce kopyan olduğunu hissediyorsun.",
+      "next_success": "core_corridor",
+      "next_fail": "ruined_deck"
+    },
+    {
+      "id": "ruined_deck",
+      "type": "narrative",
+      "title": "Çürümüş Güverte",
+      "text": "Güverte çoğunlukla parçalanmış. Birçok panel boşluğa açılıyor, bazı odalar ise içe çökmüş. Duvarlarda yosunumsu bir mantar, metal ve kemik karışımı bir dokuyla büyümüş.\n\nDar bir köşeyi döndüğünde, yerde yatan bir ceset görüyorsun. Üzerindeki üniforma senin üniformanın aynı modeli. Yüzü, senin yüzün.",
+      "next": "fate_choice"
+    },
+    {
+      "id": "fate_choice",
+      "type": "choice",
+      "title": "Kaderinle Yüzleşme",
+      "text": "Kendi cesedine bakarken zamanın çözüldüğünü hissediyorsun. Bu, geleceğin mi, geçmişin mi, yoksa başka bir döngünün sonu mu, bilmiyorsun.\n\nYine de, son kararı vermen gereken anın bu olduğuna dair tuhaf bir kesinlik var.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Çekirdeği tamamen kapatmaya karar ver.",
+          "result_text": "Zamanın serbest kalması, senin varlığının kaybolması anlamına gelebilir.",
+          "next": "ending_free"
+        },
+        {
+          "key": "B",
+          "text": "Çekirdeği stabilize etmeyi, döngüyü kontrollü şekilde sürdürmeyi seç.",
+          "result_text": "Bazı şeylerin sonsuza kadar tekrar etmesi, bazen yok olmasından daha kabul edilebilir gelir.",
+          "next": "ending_loop"
+        },
+        {
+          "key": "C",
+          "text": "Çekirdekle birleş; zamanın kendisi olmayı dene.",
+          "result_text": "Kendi benliğini, uzayıp bükülen zaman hatlarına bırakıyorsun.",
+          "next": "ending_ascend"
+        }
+      ]
+    },
+    {
+      "id": "core_corridor",
+      "type": "narrative",
+      "title": "Çekirdek Koridoru",
+      "text": "İstasyonun merkezine giden koridor, yerçekiminin tam olarak karar veremediği bir tünel gibi. Adımların bazen zemine, bazen tavana, bazen de her ikisine birden basıyor.\n\nKoridorun sonunda, kalın bir enerji perdesinin arkasında ECHO-9'un Zaman Çekirdeği parıldıyor.",
+      "next": "core_room"
+    },
+    {
+      "id": "core_room",
+      "type": "choice",
+      "title": "Zaman Çekirdeği",
+      "text": "Çekirdek, dev bir kristal küre gibi; ama aynı zamanda bir kalp, bir kara delik ve bir saat mekanizması. Yüzeyinde senin farklı yaşlardaki yansımaların belirip kayboluyor.\n\nBir ses duyuyorsun. Bu sefer kendi sesin değil. Çekirdeğin sesi.\n\"Ben senim\" diyor. \"Sen de bensin.\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Çekirdeği kapat.",
+          "result_text": "İstasyon titriyor. Kendini, bütün bu döngülerin sonunda nihai bir karar verirken buluyorsun.",
+          "next": "ending_free"
+        },
+        {
+          "key": "B",
+          "text": "Çekirdeği stabilize et; bu durumu kalıcı hale getir.",
+          "result_text": "Zamanın kırık ama işleyen bir sistem olarak devam etmesine izin veriyorsun.",
+          "next": "ending_loop"
+        },
+        {
+          "key": "C",
+          "text": "Zaman ile birleş; kim olduğun fikrinden vazgeç.",
+          "result_text": "Kendi adını bile bir süre sonra gereksiz bir etiket olarak görmeye başlıyorsun.",
+          "next": "ending_ascend"
+        }
+      ]
+    },
+    {
+      "id": "console_echo",
+      "type": "narrative",
+      "title": "Kayıp Kayıtlar",
+      "text": "İstasyonun arka kanallarında, kimsenin kullanmadığı bir odada eski bir ses kayıt cihazı buluyorsun. Cihazı çalıştırdığında kendi sesin duyuluyor:\n\n\"Bu döngüde daha iyisini yapmaya çalıştın. Belki bu sefer işe yarar. Eğer yaramazsa... yine deneyeceksin.\"",
+      "next": "corridor_choice"
+    },
+    {
+      "id": "ending_free",
+      "type": "end",
+      "title": "Zamanın Serbestliği",
+      "text": "Çekirdek yavaş yavaş kararıyor. Zamanın düzensiz atımları, yerini ağır ama tek yönlü bir akışa bırakıyor. ECHO-9 istasyonu, sessiz bir yıldız mezarlığına dönüşürken, senin varlığın zaman hattından silinmeye başlıyor.\n\nGalakside kimse, bir zamanlar ECHO-9'da neler yaşandığını tam olarak hatırlamıyor. Ama bazı kroniklerde, açıklanamayan bir zaman boşluğuna dair notlar var.\n\nO boşluk, senin bıraktığın iz.",
+      "ending_key": "good_free_time"
+    },
+    {
+      "id": "ending_loop",
+      "type": "end",
+      "title": "Sonsuz Döngü",
+      "text": "Çekirdeğin ışığı sabit bir titreşime oturuyor. ECHO-9 artık çöküşün eşiğinde değil; tam tersine, sürekli tekrar eden bir anın içine kilitlenmiş durumda.\n\nİstasyonun bazı bölümlerinde insanlar sonsuz bir sabah kahvesi içiyor, bazılarında asla bitmeyen bir toplantı yapıyor, bazılarında ise sürekli uyanıp duruyor.\n\nSen, bu döngünün bekçisi oluyorsun. Her şeyin tekrarlandığını biliyorsun; ama her seferinde küçük bir fark yaratma ihtimali, seni ayakta tutuyor.",
+      "ending_key": "neutral_loop"
+    },
+    {
+      "id": "ending_ascend",
+      "type": "end",
+      "title": "Zamanın Kendisi",
+      "text": "Çekirdeğin içinden yükselen ışık seni sarıyor. Bedenin çözülüyor, düşüncelerin genişliyor. Bir an için ECHO-9'un bütün tarihini, aynı anda hem geçmişini hem geleceğini görüyorsun.\n\nArtık tek bir an değilsin. Her an'sın. Her döngüde, her tercihte, her başarısızlık ve başarıda bir parçan kalıyor.\n\nKimse adını hatırlamıyor belki; ama zaman, seni asla unutmuyor.",
+      "ending_key": "cosmic_ascend"
+    }
+  ]
+}

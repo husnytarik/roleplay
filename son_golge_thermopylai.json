@@ -1,0 +1,378 @@
+{
+  "start": "yaklasan_gece",
+  "nodes": [
+    {
+      "id": "yaklasan_gece",
+      "type": "narrative",
+      "title": "Yaklaşan Gece",
+      "text": "MÖ 480. Termopylai Geçidi’nin dar kayalıkları ay ışığıyla gümüş gibi parlıyor. Binlerce Pers askeri çok uzakta kamp kurmuş durumda; ateşleri gecenin bağrına kızıl yarıklar açıyor. Sen, kimliği gizlenen bir Helen gölge ajanısın. Leonidas bile seni yalnız bir kez gördü ve 'Gölgede kalan savaşırsa, Spartalı iki kat dövüşür' demekle yetindi. Bugün, 300 Spartalının kaderinde görünmez bir rol oynayacaksın.\n\nYolun girişinde rüzgâr tuz ve kan kokusunu birlikte taşıyor. Üstünde koyu renkli, gölgeye karışan bir pelerin; belinde kısa bir xiphos, sırtında hafif bir yay var. Görevin üç şeyden biri olabilir: Geçidin gizli patikasını bulmak, Perslerin planını bozmak veya Spartalıların moral çöküşünü durdurmak.\n\nGece ağırlaşıyor...",
+      "next": "ilk_gorev_secin"
+    },
+
+    {
+      "id": "ilk_gorev_secin",
+      "type": "choice",
+      "title": "Gecenin Görevi",
+      "text": "Çalıların arasından geçidi izlerken üç farklı ihtimal beliriyor:",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Pers casuslarını tespit etmek için kayalıklara tırman.",
+          "result_text": "Gölgeler sana yol arkadaşı olurken kayalıklara doğru sessizce ilerliyorsun...",
+          "next": "casus_avcisi_baslangic"
+        },
+        {
+          "key": "B",
+          "text": "Spartalıların moralini artırmak için gizlice onlara yardım et.",
+          "result_text": "Askerlerin boğuk nefesleri ve metal zırh sesleri gecede yankılanıyor...",
+          "next": "moral_destegi_baslangic"
+        },
+        {
+          "key": "C",
+          "text": "Geçidi baypas eden gizli patikayı bulup Perslere karşı avantaj sağla.",
+          "result_text": "Termopylai'nin kayalık derinliklerine doğru adım atıyorsun...",
+          "next": "gizli_patika_baslangic"
+        }
+      ]
+    },
+
+    {
+      "id": "casus_avcisi_baslangic",
+      "type": "narrative",
+      "title": "Kayalıkların Üstündeki Sessizlik",
+      "text": "Dik kayalıklara tırmanırken çakıl taşları ayaklarının altından sessizce yuvarlanıyor. Uzakta Pers kampının uğultusu rüzgârla birlikte yükselip alçalıyor. Kayaların bir kıvrımında iki silüet görüyorsun. Pers tarzı başlıklar... Casuslar.\n\nAncak yakınlarında bir tuzak olup olmadığını bilmiyorsun. Saldırmadan önce bir karar vermelisin.",
+      "next": "casus_avcisi_karar"
+    },
+
+    {
+      "id": "casus_avcisi_karar",
+      "type": "choice",
+      "title": "Gölgede Karşılaşma",
+      "text": "Casusların seni fark etmediğinden eminsin. Ne yapacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Ok atarak hızlıca etkisiz hale getir.",
+          "result_text": "Yayını geriyorsun... Rüzgâr nefesini tutuyor.",
+          "next": "casus_ok_atisi"
+        },
+        {
+          "key": "B",
+          "text": "Yaklaşıp sessizce bıçakla etkisiz hale getir.",
+          "result_text": "Adımların kayalarla bir oluyor...",
+          "next": "casus_bicak"
+        },
+        {
+          "key": "C",
+          "text": "Casusları sakince takip ederek asıl hedeflerini öğrenmeye çalış.",
+          "result_text": "Gölgeler arasında bir gölge daha olup takip ediyorsun...",
+          "next": "casus_takip"
+        }
+      ]
+    },
+
+    {
+      "id": "casus_ok_atisi",
+      "type": "roll",
+      "title": "Okun Kaderi",
+      "text": "İki casus kayalıklarda fısıldaşırken sen saldırıya hazırsın. Ancak rüzgâr yön değiştiriyor.",
+      "dice": "1d20",
+      "target": 11,
+      "success_text": "Ok havayı yarıyor ve ilk casusu yere seriyor. İkincisi kaçamadan düşüyor.",
+      "fail_text": "Ok kayalığa saplanıyor, casuslar seni fark edip karanlığa kaçıyor!",
+      "next_success": "casus_ok_basarili",
+      "next_fail": "casus_ok_basarisiz"
+    },
+
+    {
+      "id": "casus_ok_basarili",
+      "type": "narrative",
+      "title": "Temiz İş",
+      "text": "Casusları sessizce indirdin. Üzerlerinde bir Pers komutanına ait mühürlü bir tomar buluyorsun. İçinde 'Kürtios Geçidi' diye bir yerden bahsediliyor. Leonidas'ın bundan haberi yoktur.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "casus_ok_basarisiz",
+      "type": "narrative",
+      "title": "Karanlıkta Kaybolanlar",
+      "text": "Casuslar kayalıklarda kayboluyor. Onları takip edemeden gözden yitiriyorsun. Belki de asıl planları öğrenemeden savaş çok daha tehlikeli hâle gelecek.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "casus_bicak",
+      "type": "roll",
+      "title": "Sessiz Yaklaşma",
+      "text": "Cırcır böceklerinin sesi bile sen hareket ettikçe kesiliyor gibi. Kayaların gövdesinde ilerliyorsun.",
+      "dice": "1d12",
+      "target": 7,
+      "success_text": "İki casusu da sessizce alt ediyorsun. Direnmeye fırsat bulamıyorlar.",
+      "fail_text": "Biri dönüyor! Sana saldırıyor!",
+      "next_success": "casus_bicak_basarili",
+      "next_fail": "casus_bicak_basarisiz"
+    },
+
+    {
+      "id": "casus_bicak_basarili",
+      "type": "narrative",
+      "title": "Sorunsuz Gölge",
+      "text": "Casusların arasında gizlenmiş bir harita buluyorsun. Persler kuzey kayalıklarından dolanarak arkaya sızmayı planlıyor!",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "casus_bicak_basarisiz",
+      "type": "narrative",
+      "title": "Yaralı Gölge",
+      "text": "Casuslardan biri seni yaralıyor fakat yine de onu alt etmeyi başarıyorsun. Ancak gürültü yapmadan durumu halledememiş olmak moralini düşürüyor.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "casus_takip",
+      "type": "narrative",
+      "title": "Karanlığın İçinden",
+      "text": "Casusları takip ettikçe Pers kampına yaklaşan gizli bir patika buluyorsun. Bu bilgi savaşın kaderini değiştirebilir.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "moral_destegi_baslangic",
+      "type": "narrative",
+      "title": "Ateş Başında Spartalılar",
+      "text": "Spartalılar geceyi kısa bir dinlenmeyle geçiriyor. Onların arasına gizlice karışıyorsun. Askerlerin ruh hâli çelik gibi, fakat yaklaşan savaşın ağırlığı omuzlarına çökmüş.",
+      "next": "moral_destegi_karar"
+    },
+
+    {
+      "id": "moral_destegi_karar",
+      "type": "choice",
+      "title": "Sözlerin Gücü",
+      "text": "Moral vermek için ne yapacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Cesaret veren bir konuşma yap.",
+          "result_text": "Alevlerin kıvılcımları yüzünü aydınlatıyor...",
+          "next": "moral_konusma"
+        },
+        {
+          "key": "B",
+          "text": "Askerlere gizlice yardım edip yaralarını sar.",
+          "result_text": "Yumuşak adımlarla yanlarına yaklaşıyorsun...",
+          "next": "moral_yaralar"
+        },
+        {
+          "key": "C",
+          "text": "Spartalı komutanlarla strateji fısıldayarak katkı sağla.",
+          "result_text": "Gölgeler içinde plan konuşmaları başlıyor...",
+          "next": "moral_strateji"
+        }
+      ]
+    },
+
+    {
+      "id": "moral_konusma",
+      "type": "roll",
+      "title": "Kaderi Etkileyecek Sözler",
+      "text": "Savaşçılar gözlerini sana dikiyor. Sesinin titreşimi gecenin içinde yankılanıyor.",
+      "dice": "1d20",
+      "target": 10,
+      "success_text": "Konuşman Spartalıların ruhunu alevlendiriyor!",
+      "fail_text": "Sözlerin yeterince etki etmiyor, bazıları sessizce uzaklaşıyor.",
+      "next_success": "moral_basarili",
+      "next_fail": "moral_basarisiz"
+    },
+
+    {
+      "id": "moral_yaralar",
+      "type": "narrative",
+      "title": "Sessiz Şifacı",
+      "text": "Yaralı askerlerin pansumanlarını yaparken minnetle sana bakıyorlar. Moral kazanıldı.",
+      "next": "moral_basarili"
+    },
+
+    {
+      "id": "moral_strateji",
+      "type": "narrative",
+      "title": "Akıl Hilesi",
+      "text": "Spartalı komutanlara Perslerin kanat hareketlerini anlatarak küçük ama kritik bir avantaj sağlıyorsun.",
+      "next": "moral_basarili"
+    },
+
+    {
+      "id": "moral_basarili",
+      "type": "narrative",
+      "title": "Ruhları Güçlenen Savaşçılar",
+      "text": "Spartalılar geceyi artık daha dik duruşla karşılıyor. Senin desteğin fark yaratacak.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "moral_basarisiz",
+      "type": "narrative",
+      "title": "Zayıflayan Umut",
+      "text": "Moral veremedin ve orduda hafif bir karamsarlık dalgası oluştu. Bu savaşta küçük ayrıntılar bile önemlidir...",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "gizli_patika_baslangic",
+      "type": "narrative",
+      "title": "Sisli Derinlik",
+      "text": "Geçidin kuzey kısmında ince sis bulutları yükseliyor. Burada bir patikanın olduğu söylentiler arasındaydı. Eğer Persler bunu keşfederse Spartalılar arkadan kuşatılır.",
+      "next": "gizli_patika_karar"
+    },
+
+    {
+      "id": "gizli_patika_karar",
+      "type": "choice",
+      "title": "Sislerin İçinde",
+      "text": "Patikanın nereye çıktığını keşfetmek zorundasın. Ne yapacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Sisleri takip ederek patikanın sonunu bul.",
+          "next": "patika_sonu"
+        },
+        {
+          "key": "B",
+          "text": "Yerdeki izleri inceleyerek Pers devriyelerini tespit et.",
+          "next": "patika_iz"
+        },
+        {
+          "key": "C",
+          "text": "Patikaya tuzak kurarak olası bir ilerlemeyi kes.",
+          "next": "patika_tuzak"
+        }
+      ]
+    },
+
+    {
+      "id": "patika_sonu",
+      "type": "narrative",
+      "title": "Tehlikenin Gözü",
+      "text": "Patika, geçidin arka noktasına açılıyor. Bu yol açık kalırsa Leonidas’ın ordusu arkadan sarılabilir.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "patika_iz",
+      "type": "roll",
+      "title": "Toprağın Hafızası",
+      "text": "Toprakta taze ayak izleri görüyorsun. Bir devriyeye mi rastlayacaksın?",
+      "dice": "1d12",
+      "target": 8,
+      "success_text": "İzler sana Perslerin gizli bir ilerleme planladığını gösteriyor!",
+      "fail_text": "İzleri takip ederken ayağın kayıyor; gürültü devriyenin dikkatini çekiyor!",
+      "next_success": "patika_iz_bilgi",
+      "next_fail": "patika_iz_tehlike"
+    },
+
+    {
+      "id": "patika_iz_bilgi",
+      "type": "narrative",
+      "title": "Gerçek Ortaya Çıkıyor",
+      "text": "Persler patikayı kullanarak Spartalıları kuşatmayı planlıyor. Bu bilgi anında Leonidas'a ulaşmalı.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "patika_iz_tehlike",
+      "type": "narrative",
+      "title": "Gölgeye Düşen Tehlike",
+      "text": "Pers devriyesi seni fark ediyor, zor kaçıyorsun! Bu yol artık daha tehlikeli.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "patika_tuzak",
+      "type": "narrative",
+      "title": "Gizli Savunma",
+      "text": "Patikaya yerleştirdiğin taş kapanları ilerlemeyi geciktirecek. Zaman kazandın.",
+      "next": "ortak_isaret"
+    },
+
+    {
+      "id": "ortak_isaret",
+      "type": "narrative",
+      "title": "Savaşın İlk Işığı",
+      "text": "Şafak söküyor. Leonidas ve 300 Spartalı mızraklarını doğrultmuş, Pers ordusunun yüz binlercesine karşı dimdik duruyor. Senin gece boyunca yaptığın hareketler, savaşın ilk hamlesine etki edecek.",
+      "next": "son_kader_secimi"
+    },
+
+    {
+      "id": "son_kader_secimi",
+      "type": "choice",
+      "title": "Kaderin Yolu",
+      "text": "Son bir seçimin var. Bu seçimin tarihi değiştirebilir.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Leonidas'ın yanına gidip öğrendiklerini anlat.",
+          "next": "final_leonidas"
+        },
+        {
+          "key": "B",
+          "text": "Gizli patikayı tamamen kapatmaya çalış.",
+          "next": "final_patika"
+        },
+        {
+          "key": "C",
+          "text": "Pers komutanının çadırına sızarak kaos yarat.",
+          "next": "final_sizinti"
+        }
+      ]
+    },
+
+    {
+      "id": "final_leonidas",
+      "type": "end",
+      "ending_key": "Spartalıların Onurlu Direnişi",
+      "title": "Leonidas’ın Kararı",
+      "text": "Leonidas, söylediklerini sessizce dinler ve araştırdığın tehditleri değerlendirir. 300 Spartalı ile beraber geçidi bir kez daha sağlamlaştırır. Savaş tarihin gördüğü en onurlu duruşla başlar.",
+      "next": null
+    },
+
+    {
+      "id": "final_patika",
+      "type": "end",
+      "ending_key": "Geçit Kapanıyor",
+      "title": "Kayaların Gücü",
+      "text": "Patikayı çökertmen Pers ordusunu saatlerce oyalıyor. Spartalıların dayanma süresi uzuyor ve savaşın kaderini bir günlüğüne değiştiren görünmez kahraman oluyorsun.",
+      "next": null
+    },
+
+    {
+      "id": "final_sizinti",
+      "type": "roll",
+      "title": "Pers Çadırında Son Hamle",
+      "text": "Komutan Xerxes’in emir subaylarının olduğu çadıra sızıyorsun. Görevin sonuç vermesi için risk alman gerek.",
+      "dice": "1d20",
+      "target": 14,
+      "success_text": "Çadırda kaos çıkarıyor, emir subaylarını alt ediyor ve Pers ordusunun iletişimini bozuyorsun!",
+      "fail_text": "Sızma planın ortaya çıkıyor! Son anda kaçıyorsun ama etki sınırlı kalıyor.",
+      "next_success": "final_sizinti_basarili",
+      "next_fail": "final_sizinti_basarisiz"
+    },
+
+    {
+      "id": "final_sizinti_basarili",
+      "type": "end",
+      "ending_key": "Kaosun Mimarı",
+      "title": "Karanlıkta Zafer",
+      "text": "Pers ordusunda yarattığın kaos, savaşın en kritik anında gecikmelere yol açıyor. 300 Spartalı daha uzun süre dayanabiliyor. Tarih seni hatırlamasa da gölgeler hatırlar.",
+      "next": null
+    },
+
+    {
+      "id": "final_sizinti_basarisiz",
+      "type": "end",
+      "ending_key": "Gölgede Kaybolan",
+      "title": "Son Kaçış",
+      "text": "Plan başarısız olsa da hayatta kalıyorsun. Spartalılar tarih sahnesinde efsaneleşirken sen gölgelerin arasında kayboluyorsun.",
+      "next": null
+    }
+  ]
+}

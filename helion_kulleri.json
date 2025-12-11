@@ -1,0 +1,426 @@
+{
+  "start": "intro_orbit",
+  "nodes": [
+    {
+      "id": "intro_orbit",
+      "type": "narrative",
+      "title": "Sis Denizinin Üzerinde",
+      "text": "Helion gezegeni yörüngede ağır ağır dönüyor. Aşağıda, sisle örtülü okyanuslar ve yarısı çökmüş şehir kubbeleri görünüyor. Üç Güneş Savaşları resmî olarak bitmiş olabilir ama gezegenin etrafındaki enkaz halkası başka bir şey söylüyor.\n\nGemi sensörleri gezegen çekirdeğinin derinlerinden düzenli aralıklarla yükselen bir enerji nabzı tespit ediyor. Kayıp Çekirdek, üç galaksinin de göz diktiği o bilinmeyen güç kaynağı, hâlâ hayatta.\n\nSen, tarafsız arabulucu statüsünde tek kişilik bir saha ajanısın. Görevin basit görünüyor: Helion üzerinde bir barış denklemi kurmak. Ama içgüdülerin, bu gezegenin seni yalnızca dinlemeyeceğini, aynı zamanda tartacağını fısıldıyor.",
+      "next": "briefing_table"
+    },
+    {
+      "id": "briefing_table",
+      "type": "narrative",
+      "title": "Barış Masası",
+      "text": "Yörüngedeki küçük komuta odasında holografik bir masa açılıyor. Masanın etrafında üç farklı renk ve armayla işaretlenmiş bölgeler yanıp sönüyor: Azura Dominion, Varkh Kolektifi ve Solari Birliği.\n\nUzak bir frekanstan komutanın sesi geliyor: Helion'un kaderi, bu üç güçle kuracağın ilişkilere bağlı. Onların gözünde tarafsız bir arabulucusun, ama her biri seni kendi tarafına çekmeye çalışacak.\n\nÖnce ne şekilde ineceğin soruluyor. Her iniş senaryosu seni farklı bir başlangıca, farklı bakış açılarına ve farklı risklere götürecek.",
+      "next": "landing_choice"
+    },
+    {
+      "id": "landing_choice",
+      "type": "choice",
+      "title": "İniş Yöntemi",
+      "text": "Helion atmosferine girmek üzeresin. İniş şeklin, seni ilk kimin ciddiye alacağını ve kimin senden nefret edeceğini belirleyecek.\n\nHangi yolu seçiyorsun?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Diplomatik iniş – resmi protokol ile, tüm gözler üzerinde.",
+          "result_text": "Kimliğini saklamıyorsun; kartlarını açık oynayacaksın. Bu, bazı kapıları açarken bazılarını sonsuza dek kapatacak.",
+          "next": "diplomatic_landing"
+        },
+        {
+          "key": "B",
+          "text": "Kaçak iniş – alt mahallelere sız, halkın arasından başla.",
+          "result_text": "Resmî kayıtların dışında kalmayı, önce sokağın nabzını tutmayı seçiyorsun.",
+          "next": "smuggler_landing"
+        },
+        {
+          "key": "C",
+          "text": "Yörüngeden tek kişilik pod ile atla – radarların arasından süzül.",
+          "result_text": "Tek başına, sessiz ve iz bırakmadan inmek istiyorsun. En azından teoride.",
+          "next": "pod_landing"
+        }
+      ]
+    },
+    {
+      "id": "diplomatic_landing",
+      "type": "narrative",
+      "title": "Cam Kubbeli Pist",
+      "text": "Gemi, Helion'un hâlâ sağlam kalabilmiş cam kubbeli tek iniş pistine süzülüyor. Pistin etrafında Azura mavi zırhlarıyla askerler dizilmiş, Solari rahipleri dualar mırıldanıyor, Varkh temsilcileri ise uzaktan, sessizce seni süzüyor.\n\nİniş rampası açılırken yüzüne sıcak, metal kokulu bir hava vuruyor. Adımını attığında mekânın geri kalanı susuyor. Herkes seni tartıyor, senin de onları tarttığın gibi.",
+      "next": "procession_hall"
+    },
+    {
+      "id": "smuggler_landing",
+      "type": "narrative",
+      "title": "Alt Mahallelerin Dumanı",
+      "text": "Kaçak taşıyıcıların modifiye ettiği küçük shuttle, sisli vadilerin arasına gizli bir pistte sert ama başarılı bir iniş yapıyor. Kabin kapısı açıldığında yüzüne pas, yanık yağ ve fermente içecek kokusu karışımı bir hava çarpıyor.\n\nAlt mahallelerin üzerindeki paslı köprülerde, her fraksiyondan fazlasını görüyorsun: Karaborsacılar, taraf değiştirmeye hazır paralı askerler ve savaş yorgunu sıradan insanlar.\n\nBuradan çıktığın yol, doğrudan saraylara değil, önce alt katmanların gerçeklerine uğrayacak.",
+      "next": "slums_arrival"
+    },
+    {
+      "id": "pod_landing",
+      "type": "roll",
+      "title": "Atmosfere Dalış",
+      "text": "Tek kişilik düşüş podu, Helion atmosferine alevli bir iz bırakarak giriyor. Otomatik kalkanlar, eski savaş uydularının paslı lazer sensörlerine karşı hâlâ işe yarar mı, emin değilsin.\n\nSarsıntılar artıyor, kabin uyarı ışıkları kırmızıya dönüyor. Birkaç saniye içinde ya sessiz bir kratere, ya da enkaz bulutuna dönüşeceksin.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Pod, kontrolden çıkmaya yaklaşsa da son anda stabilizasyona giriyor. Küçük, simsiyah cam bir kraterin içine gömülerek duruyorsun.",
+      "fail_text": "Pod, atmosfere girerken gövdesinden parçalar koparıyor. Çarpışma sert oluyor, ama ölmek için değil; uzun bir süre kemiklerin ağrısına küfretmek için yeterli.",
+      "next_success": "pod_crater",
+      "next_fail": "pod_crater"
+    },
+    {
+      "id": "procession_hall",
+      "type": "narrative",
+      "title": "Kristal Yürüyüş Yolu",
+      "text": "Cam pistten kristal kaplı bir yürüyüş yoluna alınıyorsun. Tavanda eski savaş gemilerinden sökülmüş metal panolar ve yanan yıldızların resmedildiği vitraylar var.\n\nYolun sonunda Azura Dominion'un resmî elçisi seni bekliyor: Laren. Mavi zırhının içinde dimdik duran, yüzündeki çizgilerden hem yorgunluğu hem de inadı okunan bir figür.",
+      "next": "azura_first_talk"
+    },
+    {
+      "id": "azura_first_talk",
+      "type": "choice",
+      "title": "Azura Elçisi Laren",
+      "text": "Laren seni tepeden tırnağa süzüyor. Sesi, metal gibi soğuk ama tamamen düşmanca değil.\n\n\"Tarafsız olduğunu söylüyorlar\" diyor. \"Helion'da tarafsızlık, bataklığa basıp çamur olmadan yürümeye benzer. Bana önce şu sorunun cevabını ver: Kimin için buradasın?\"\n\nNasıl bir duruş sergileyeceksin?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Açıkça tarafsızlığını vurgula, kimsenin adına konuşmadığını söyle.",
+          "result_text": "Doğrulukla başlıyorsun. Bu bazı kapıları kapatsa da güvenilirliğini inşa edebilir.",
+          "next": "azura_test_roll"
+        },
+        {
+          "key": "B",
+          "text": "Onların dilinden konuş, güç dengesi ve kazanımlar üzerine vurgu yap.",
+          "result_text": "Laren'in gözlerinde kısa bir parıltı yakalıyorsun. Güç dilinin, bu salonda her zaman işe yaradığını biliyorsun.",
+          "next": "azura_test_roll"
+        }
+      ]
+    },
+    {
+      "id": "azura_test_roll",
+      "type": "roll",
+      "title": "Duruş Testi",
+      "text": "Laren, sözlerinden ziyade duruşunu tartıyor. Sesi alçalıyor.\n\n\"Helion'da sözlerimiz kadar gölgemiz de konuşur\" diyor. \"Sana güvenmeli miyim?\"\n\nBu anda hissettiğin baskıyla beden dilini ve ses tonunu kontrol etmeye çalışıyorsun.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Sakin, kontrollü ve net kalmayı başarıyorsun. Laren başını hafifçe sallıyor. \"En azından sahte bir korkak değilsin\" diyor.",
+      "fail_text": "Cümlelerin arasında küçük tereddütler, göz kırpmaları yakalanıyor. Laren omuzlarını kasıyor. \"Helion seni ya eğitir ya da ezer\" diye mırıldanıyor.",
+      "next_success": "choose_first_faction",
+      "next_fail": "choose_first_faction"
+    },
+    {
+      "id": "slums_arrival",
+      "type": "narrative",
+      "title": "Paslı Köprüler",
+      "text": "Alt mahalleler, savaşın resmi raporlara girmeyen yüzü gibi. Gökyüzünü göremediğin dar sokaklarda neon tabelalar titriyor, drenaj kanallarından yükselen buhar, ışığı kırarak akıl bozucu bir sis yaratıyor.\n\nHalk, üç fraksiyonun da posterlerini duvarlara asmış ama hiçbirine tapmıyor. Onlar için önemli olan, günü sağ çıkacak kadar atlatmak.",
+      "next": "varkh_ambush_roll"
+    },
+    {
+      "id": "varkh_ambush_roll",
+      "type": "roll",
+      "title": "Varkh Baskını",
+      "text": "Dar bir köşeyi dönerken, biyomekanik zırh parçaları taşıyan iki figür sana doğru dönüyor. Varkh Kolektifi'nin sahadaki gözleri bunlar.\n\nBiri maskesinin altından konuşuyor: \"Tarafsız olduğunu söylüyorlar. Biz tarafsızlara nadiren güveniriz. Ama bazen, çok işe yararlar.\"",
+      "dice": "d6",
+      "target": 3,
+      "success_text": "Elleri silahlarına gitmeden beden dilini yumuşatıyor, tehdit olmadığını gösteriyorsun. Seni üslerine götürmek yerine, görüşme talebini iletmeyi kabul ediyorlar.",
+      "fail_text": "Yanlış bir hareketin, çatışma tetikleyicisi gibi algılanıyor. Birkaç lazer atışı duvarları delip geçiyor. Canını zor kurtararak ara sokaklara dalıyorsun; yine de Varkh seni işaretlemiş halde.",
+      "next_success": "choose_first_faction",
+      "next_fail": "choose_first_faction"
+    },
+    {
+      "id": "pod_crater",
+      "type": "narrative",
+      "title": "Kıvılcım Krateri",
+      "text": "Podun gömüldüğü siyah cam kraterin kenarına tırmanırken ayakların kaygan zeminde iz bırakıyor. Gecenin ortasında, yalnızca uzaktaki savaş enkazlarının zayıf ışıkları yanıp sönüyor.\n\nKask ekranında, kimliği belirsiz bir yayın belirdiğini görüyorsun.",
+      "next": "unknown_transmission"
+    },
+    {
+      "id": "unknown_transmission",
+      "type": "narrative",
+      "title": "Bilinmeyen Yayın",
+      "text": "Statik gürültü arasında bir ses netleşiyor: \"Üçü de yalan söylüyor. Azura, Varkh, Solari… hepsi Kayıp Çekirdek'i kendine istiyor. Eğer gerçekten tarafsızsan, önce Helion'u dinle. Sonra onları.\"\n\nSinyalin kaynağı belli değil. Yer altında, kayıtlarda olmayan bir yerden geliyor gibi.",
+      "next": "choose_first_faction"
+    },
+    {
+      "id": "choose_first_faction",
+      "type": "choice",
+      "title": "Üç Gölgeli Çağrı",
+      "text": "Helion'un ilk adımında üç fraksiyondan da çağrılar düşüyor. Her biri seni \"ilk\" konuşan taraf olmak için kapışıyor.\n\nKiminle başlayacaksın?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Azura Dominion – disiplin, düzen ve ağır zırh.",
+          "result_text": "Savaş sonrası düzeni inşa edenler olduklarını iddia ediyorlar.",
+          "next": "meet_azura"
+        },
+        {
+          "key": "B",
+          "text": "Varkh Kolektifi – biyo-mekanize deneyler ve kaba güç.",
+          "result_text": "Onlar için savaş bir araç değil, varoluş biçimi.",
+          "next": "meet_varkh"
+        },
+        {
+          "key": "C",
+          "text": "Solari Birliği – enerji rahipleri ve inanç üzerinden kurulan güç.",
+          "result_text": "Savaşa kutsallık kazandırmaya çalışanların masasına oturacaksın.",
+          "next": "meet_solari"
+        }
+      ]
+    },
+    {
+      "id": "meet_azura",
+      "type": "narrative",
+      "title": "Mavi Mermer Salon",
+      "text": "Azura karargâhı, dev sütunlarla çevrili mavi mermer bir salona kurulmuş. Duvarlarda, savaşın en şiddetli günlerini gösteren holografik sahneler dönüyor.\n\nÜst düzey komuta konseyi, sana Helion'daki çıkarlarını özetliyor: Çekirdeği kontrol etmek, galaksilere istikrar getireceklerini söylüyorlar. İstikrar derken tam olarak neyi kastettiklerini bilmek zor.",
+      "next": "azura_mission_choice"
+    },
+    {
+      "id": "meet_varkh",
+      "type": "narrative",
+      "title": "Çelik ve Et Laboratuvarı",
+      "text": "Varkh Kolektifi'nin üssü, metal kafesler ve yarı organik tanklarla dolu bir laboratuvar gibi. Duvarda asılı zırhların bazıları, sanki içlerinde hâlâ nefes alan bir şeyler varmış gibi hafifçe hareket ediyor.\n\nKomutanları, Helion'daki savaşın bitmediğini, sadece şekil değiştirdiğini söylüyor. Onlar için Kayıp Çekirdek, hem silah hem de yeni bir ırk yaratma fırsatı.",
+      "next": "varkh_mission_choice"
+    },
+    {
+      "id": "meet_solari",
+      "type": "narrative",
+      "title": "Işığın Avlusu",
+      "text": "Solari Birliği karargâhı, yarı tapınak yarı enerji santrali bir kompleks. Yüksek kubbenin içini, yavaşça nefes alan bir yıldız gibi titreşen ışık dolduruyor.\n\nBaşrahip, Helion'un aslında kutsal bir organizma olduğunu söylüyor. Kayıp Çekirdek onlar için yalnızca enerji değil, ilahi bir kalp.",
+      "next": "solari_mission_choice"
+    },
+    {
+      "id": "azura_mission_choice",
+      "type": "choice",
+      "title": "Azura Görevi",
+      "text": "Azura konseyi sana iki farklı teklif sunuyor:\n\n1) Diğer fraksiyonlar hakkında gizli bilgi toplayacak bir casus olarak çalışmak.\n2) Açık, kayıt altına alınmış, şeffaf bir barış misyonu yürütmek.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Azura adına gizli bir casusluk işi kabul et.",
+          "result_text": "Gölgelere karışmayı kabul ediyorsun. Azura seni bir piyon mu, yoksa müttefik mi görecek, zaman gösterecek.",
+          "next": "azura_spy_roll"
+        },
+        {
+          "key": "B",
+          "text": "Resmi, kayıtlı bir barış misyonu talep et.",
+          "result_text": "Daha şeffaf ama daha kısıtlı bir yol seçiyorsun. Bu yol, açıkça sana bağlanmış sorumluluklar demek.",
+          "next": "azura_honest_deal"
+        }
+      ]
+    },
+    {
+      "id": "azura_spy_roll",
+      "type": "roll",
+      "title": "Gölgeli Balkonlar",
+      "text": "Helion'un yüksek kulelerinden birinde, Solari ve Varkh temsilcilerinin gizli görüşmesini izlemek için konuşlandırılıyorsun. Rüzgâr mavi pelerinini dalgalandırırken, her yanlış hareket seni ifşa edebilir.\n\nBedenini ve nefesini kontrol etmek zorundasın.",
+      "dice": "2d6",
+      "target": 7,
+      "success_text": "Hiç fark edilmeden tüm konuşmayı kaydediyorsun. Üç tarafın da sandığından daha kirli bir pazarlık yaptığını öğreniyorsun.",
+      "fail_text": "Metal bir korkuluk ayağının altında inliyor. Kuledeki bir muhafız, bir anlığına gölgende bir hareket yakalıyor. Tamamen ifşa olmuyorsun ama artık bazıları, seni şüpheli bir unsur olarak işaretliyor.",
+      "next_success": "midpoint_summit",
+      "next_fail": "midpoint_summit"
+    },
+    {
+      "id": "azura_honest_deal",
+      "type": "narrative",
+      "title": "Temiz Sayfa",
+      "text": "Azura ile imzaladığın anlaşma, açıkça tarafsız bir arabulucu olduğunu yazıyor. Fakat satır aralarında, onları asla tamamen karşılarına almaman için ince baskılar sezilebiliyor.\n\nBu yolla elde ettiğin güven, ileride masada daha yüksek sesle konuşmana imkân verebilir.",
+      "next": "midpoint_summit"
+    },
+    {
+      "id": "varkh_mission_choice",
+      "type": "choice",
+      "title": "Varkh Deneyi",
+      "text": "Varkh komutanı sana iki seçenek sunuyor:\n\n1) Deneysel bir biyo-zırh prototipini kısa süreliğine giymek ve savaş alanı simülasyonuna katılmak.\n2) Kolektifin \"ruh ritüeli\" dedikleri, eski bir savaş geleneğine tanıklık etmek.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Deneysel biyo-zırh prototipini test et.",
+          "result_text": "Zırhın seni güçlendireceğini biliyorsun; ama neye dönüştüreceğini bilmiyorsun.",
+          "next": "varkh_experiment_roll"
+        },
+        {
+          "key": "B",
+          "text": "Varkh ruh ritüeline katıl.",
+          "result_text": "Onların gerçek yüzünü, maskesiz hâllerini görmek istiyorsun.",
+          "next": "varkh_ritual_room"
+        }
+      ]
+    },
+    {
+      "id": "varkh_experiment_roll",
+      "type": "roll",
+      "title": "Biyo-Zırhın Nabzı",
+      "text": "Zırhı giydiğin anda omurgandan yukarı sıcak bir dalga yükseliyor. Gözlerinin kenarında arayüzler beliriyor, kalp atışların zırhın iç dokusuyla senkronize oluyor.\n\nZırh seni güçlendirebilir, ama kontrolü kaybedersen seni bir savaş makinesine de çevirebilir.",
+      "dice": "d6",
+      "target": 5,
+      "success_text": "Zırhı kendi iradene boyun eğdiriyorsun. Varkh, seni sıradan bir diplomattan fazlası olarak görmeye başlıyor.",
+      "fail_text": "Bir an için zırh sana değil, sen zırha aitmişsin gibi hissediyorsun. Kontrolü geri alsan da Varkh, içindeki karanlık potansiyeli not ediyor.",
+      "next_success": "midpoint_summit",
+      "next_fail": "midpoint_summit"
+    },
+    {
+      "id": "varkh_ritual_room",
+      "type": "narrative",
+      "title": "Ruh Çanağı",
+      "text": "Yuvarlak bir odada, Varkh savaşçıları diz çökmüş durumda. Ortada, içinden hafif bir buhar yükselen siyah metal bir çanak var.\n\nHer savaşçı sırayla çanağa bakıp kendi adını fısıldıyor, sonra da savaşta kaybettiği birinin ismini. Sıra sana geldiğinde, hangi ismi söyleyeceğini düşünürken boğazın düğümleniyor.",
+      "next": "midpoint_summit"
+    },
+    {
+      "id": "solari_mission_choice",
+      "type": "choice",
+      "title": "Solari Görevi",
+      "text": "Solari rahipleri sana iki kapı açıyor:\n\n1) Helion'un manyetik kutuplarına uzanan enerji hatları boyunca bir hac yolculuğu.\n2) İç halka arşivlerinde, geçmiş ve geleceğe dair kehanet metinlerini inceleme izni.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Enerji mabedine hac yolculuğu yap.",
+          "result_text": "Ayaklarınla yürüyerek, Helion'un damarlarının nabzını hissedeceksin.",
+          "next": "solari_pilgrimage_roll"
+        },
+        {
+          "key": "B",
+          "text": "İç halka arşivlerine dal.",
+          "result_text": "Sözlerin ve sembollerin içindeki güç, belki de Çekirdek kadar etkilidir.",
+          "next": "solari_inner_sanctum"
+        }
+      ]
+    },
+    {
+      "id": "solari_pilgrimage_roll",
+      "type": "roll",
+      "title": "Işık Hac Yolu",
+      "text": "Helion'un kırık toprakları üzerinde günlerce yürüyorsun. Gökyüzünde üç güneşin soluk yankıları, sisin arkasından silik diskler olarak görünüyor.\n\nYorgunluk, vizyonlarla karışıyor. Ayakların seni nereye götürecek?",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Yolun sonunda, yerle göğü birbirine bağlayan bir ışık sütununa ulaşıyorsun. Helion senin adını öğrenmiş gibi.",
+      "fail_text": "Yolun ortasında fenalaşıyorsun. Kendine geldiğinde rahipler seni geri taşımış oluyor. Yine de gözlerinde, gördüklerine dair bir saygı var.",
+      "next_success": "midpoint_summit",
+      "next_fail": "midpoint_summit"
+    },
+    {
+      "id": "solari_inner_sanctum",
+      "type": "narrative",
+      "title": "Sessiz Arşiv",
+      "text": "Arşiv odasında, ışık yerine düşük frekanslı bir uğultu var. Raflar, hem metal hem de taş bloklardan oluşan veri tabletleriyle dolu.\n\nKayıtlardan birinde, adının çoktan gelecekteki bir metne yazıldığını görüyorsun. Tarih henüz yaşanmamış bir savaştan bahsediyor ve sen orada kilit figürsün.",
+      "next": "midpoint_summit"
+    },
+    {
+      "id": "midpoint_summit",
+      "type": "narrative",
+      "title": "Helion Zirvesi",
+      "text": "Helion'un üstünde yüzen eski bir savaş kruvazörünün gövdesi, geçici zirve salonuna dönüştürülmüş. Yer çekimi düşük, ışıklar loş, havada gerilim tadında bir metal kokusu var.\n\nAzura, Varkh ve Solari temsilcileri aynı masaya oturmuş durumda. Sen, masanın tam ortasında, Kayıp Çekirdek'e giden yolu açabilecek tek insan olarak konumlanmışsın.",
+      "next": "summit_choice"
+    },
+    {
+      "id": "summit_choice",
+      "type": "choice",
+      "title": "Tek Masada Üç Gölge",
+      "text": "Zirvede herkes kendi haklılığını anlatıyor. Azura düzeni, Varkh gücü, Solari ise \"ilahi dengeyi\" savunuyor.\n\nArtık top sende. Nasıl bir öneriyle bu masaya müdahale edeceksin?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Gerçek ve şeffaf bir barış öner; Çekirdek tarafsız bir konseyin kontrolüne geçsin.",
+          "result_text": "Kimse tam memnun değil, ama kimse tamamen reddetmiyor. Bu bile Helion için bir mucize olabilir.",
+          "next": "core_descent"
+        },
+        {
+          "key": "B",
+          "text": "Çekirdeği tek bir güç için yönlendirme planını sessizce hazırla.",
+          "result_text": "Masada açıkça tarafsız görünürken zihininde başka bir denklemi çözüyorsun.",
+          "next": "core_descent"
+        },
+        {
+          "key": "C",
+          "text": "Zirveyi sabote et, eski nefretleri yeniden ateşleyip savaşı geri getir.",
+          "result_text": "Bazen bir sistem o kadar çürüktür ki tek çözüm, onu yakmaktır. En azından sen böyle olduğuna inanıyorsun.",
+          "next": "ending_war_renewed"
+        }
+      ]
+    },
+    {
+      "id": "core_descent",
+      "type": "narrative",
+      "title": "Çekirdek Kuyusu",
+      "text": "Helion'un kalbine giden asansör, kilometrelerce aşağıya iniyor. Duvarlarda eski savaşlardan kalan yanık izleri, patlamış kablolar ve fosilleşmiş metal parçaları var.\n\nEn dipte, Kayıp Çekirdek seni bekliyor: Yarı makine, yarı organik bir kalp gibi atan dev bir enerji küresi.",
+      "next": "core_roll"
+    },
+    {
+      "id": "core_roll",
+      "type": "roll",
+      "title": "Kayıp Çekirdek ile Yüzleşme",
+      "text": "Çekirdek, söz kullanmadan konuşuyor. Zihnine görüntüler, kokular ve duygular gönderiyor. Savaşların başlangıcından çok önce, Helion'un asıl amacına dair sahneler görüyorsun.\n\nBu karşılaşmada ne kadar sağlam kalabileceğin, bundan sonrasını belirleyecek.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Zihnin sarsılsa da dağılmıyor. Çekirdek seninle bir eşit gibi konuşmaya başlıyor.",
+      "fail_text": "Bir an için benliğini kaybediyorsun. Sanki kim olduğun, nereden geldiğin belirsizleşiyor; ama sonra kırık parçalarını toparlayarak ayakta kalmayı başarıyorsun.",
+      "next_success": "vision_choice",
+      "next_fail": "vision_choice"
+    },
+    {
+      "id": "vision_choice",
+      "type": "choice",
+      "title": "Geleceklerin Galerisi",
+      "text": "Kayıp Çekirdek sana dört farklı gelecek gösteriyor. Her biri seni başka bir anıya, başka bir masala dönüştürecek.\n\nHangisini seçiyorsun?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Üç gücü de kısıtlayacak bir barış düzeni kur; kimsenin tek başına hükmedemediği bir Helion.",
+          "result_text": "Barış, herkesin biraz kaybettiği ama gezegenin kazandığı bir denklem olur.",
+          "next": "ending_united_pact"
+        },
+        {
+          "key": "B",
+          "text": "Çekirdekle birleş ve galaksinin gölgede kalan hakimi ol.",
+          "result_text": "Barış, kontrol altındaki bir sessizlik midir, yoksa gerçek özgürlük mü? Buna artık sen karar verirsin.",
+          "next": "ending_core_avatar"
+        },
+        {
+          "key": "C",
+          "text": "Kayıp Çekirdek'in varlığını sakla, gerçeği kimseye anlatma ve ortadan kaybol.",
+          "result_text": "Bazen en büyük hizmet, kimsenin bilmediği bir gerçeği gömmektir.",
+          "next": "ending_secret_keeper"
+        },
+        {
+          "key": "D",
+          "text": "Zirvede yaptıklarından dolayı sürgüne razı ol; Helion'u terk et ama hikâyeyi yanında götür.",
+          "result_text": "Galaksinin kenarlarında dolaşan bir efsaneye dönüşürsün.",
+          "next": "ending_exile_wanderer"
+        }
+      ]
+    },
+    {
+      "id": "ending_united_pact",
+      "type": "end",
+      "title": "Helion Barış Paktı",
+      "text": "Üç fraksiyon da istemeden de olsa, Kayıp Çekirdek'i tarafsız bir konseyin gözetimine bırakmayı kabul eder. Helion, yüzyıllar sonra ilk kez tam anlamıyla savaşsız bir gece görür.\n\nSenin adın, tarihte \"Yıldızbarış Elçisi\" olarak yazılır; ama hiçbir tarih kitabı, bu unvana giden yolda neler hissettiğini tam anlatamaz.",
+      "ending_key": "united_pact"
+    },
+    {
+      "id": "ending_core_avatar",
+      "type": "end",
+      "title": "Çekirdeğin Avatari",
+      "text": "Kayıp Çekirdek'in nabzı senin kalp atışlarınla birleşir. Bedenin, eski bir kabuk gibi geride kalır; bilincin galaksi çapında bir ağın içine yayılır.\n\nSavaşlar biter; çünkü kimse artık senden habersiz hareket edemez. Barış gelir; ama bu barışın içinde özgürlüğün ne kadar yer kaldığı, kuşaklar boyu tartışılır.",
+      "ending_key": "core_avatar"
+    },
+    {
+      "id": "ending_war_renewed",
+      "type": "end",
+      "title": "Tekrar Başlayan Savaş",
+      "text": "Zirveyi sabote ettiğinde, eski nefretler bir kıvılcımla yeniden alevlenir. Helion'un göğü, ikinci kez ateşle boyanır.\n\nTarih kitapları, yeni savaşın nedenini tartışırken senin adını ya anmaz ya da bir dipnota sıkıştırır. Ama sen bilirsin: Bu ateşi sen yaktın.",
+      "ending_key": "war_renewed"
+    },
+    {
+      "id": "ending_exile_wanderer",
+      "type": "end",
+      "title": "Yıldız Sürgünü",
+      "text": "Helion'u canlı ama çözülememiş bir denklemler bütünü olarak bırakıp gidersin. Ne tam kahramansın ne de tam hain.\n\nUzak kolonilerde, \"Bir zamanlar Helion'da her şeyi değiştirebilecek biri vardı\" diye başlayan hikâyeler anlatılır. Hikâyenin sonunda senin adın geçmez; ama dinleyenler, boşluğu hisseder.",
+      "ending_key": "exile_wanderer"
+    },
+    {
+      "id": "ending_secret_keeper",
+      "type": "end",
+      "title": "Sırrın Bekçisi",
+      "text": "Kayıp Çekirdek'in gerçek doğasını, Helion'un asıl amacını ve üç fraksiyonun bilmemesi gereken tüm ayrıntıları hafızana mühürlersin.\n\nBelki bir gün, galaksi yeni bir felaketle yüzleştiğinde, bu sırrı açmak zorunda kalacaksın. Ama bugün değil. Bugün, gerçeği taşıyan tek kişi olarak gölgelerin arasında kaybolmayı seçiyorsun.",
+      "ending_key": "secret_keeper"
+    }
+  ]
+}

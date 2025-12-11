@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zeta Primus – JSON RPG</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <h1><span class="logo">🚀</span>Zeta Primus</h1>
+          <p>
+            JSON tabanlı roleplay. Üstten senaryoyu seç, karar ver, zar at,
+            hikâyeyi dallandır.
+          </p>
+        </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-end;
+          "
+        >
+          <label style="font-size: 0.7rem; color: var(--muted)">
+            Senaryo:
+            <select
+              id="scenario-select"
+              style="font-size: 0.75rem; border-radius: 999px; padding: 3px 8px"
+            >
+              <option value="helion_kulleri.json">Helion'un Külleri</option>
+              <option value="echo9_zaman.json">ECHO-9 Zaman Çöküşü</option>
+              <option value="son_golge_thermopylai.json">
+                Son Gölge: Thermopylai
+              </option>
+            </select>
+          </label>
+          <button
+            id="load-btn"
+            class="btn btn-primary"
+            style="font-size: 0.75rem; padding: 4px 10px"
+          >
+            Senaryoyu Yükle ve Başlat
+          </button>
+          <span class="badge" id="story-status">Henüz senaryo yüklenmedi</span>
+        </div>
+      </header>
+
+      <main>
+        <!-- Üst panel: Sahne -->
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="step-counter" id="step-counter">Adım: -</div>
+              <h2>Görev Sahnesi</h2>
+            </div>
+            <div id="step-type" class="badge">Bekliyor</div>
+          </div>
+
+          <div class="scene-content">
+            <h3 id="step-title">Senaryo seç ve yükle</h3>
+            <p id="step-text">
+              Sağ üstten bir JSON senaryo seçip “Senaryoyu Yükle ve Başlat”
+              butonuna bas. Python tarafında kullandığın uzun senaryoları (start
+              + nodes yapısı) burada da okuyabilirsin.
+            </p>
+          </div>
+
+          <div id="ui-area" class="ui-area"></div>
+        </section>
+
+        <!-- Alt panel: Günlük -->
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Görev Günlüğü</h2>
+          </div>
+          <div id="log">
+            <p>
+              Burada seçimlerin, zar sonuçların ve önemli olaylar listelenecek.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span
+          >Tipler: narrative · choice · roll · end → hepsi JSON’dan
+          geliyor.</span
+        >
+        <span id="footer-msg"></span>
+      </footer>
+    </div>
+
+    <script>
+      let story = null;
+      let nodeMap = {};
+      let currentId = null;
+
+      const stepTitleEl = document.getElementById("step-title");
+      const stepTextEl = document.getElementById("step-text");
+      const stepTypeEl = document.getElementById("step-type");
+      const uiAreaEl = document.getElementById("ui-area");
+      const logEl = document.getElementById("log");
+      const storyStatusEl = document.getElementById("story-status");
+      const stepCounterEl = document.getElementById("step-counter");
+      const footerMsgEl = document.getElementById("footer-msg");
+      const scenarioSelEl = document.getElementById("scenario-select");
+      const loadBtn = document.getElementById("load-btn");
+
+      function log(msg) {
+        const p = document.createElement("p");
+        p.textContent = msg;
+        logEl.appendChild(p);
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function rollDice(diceSpec) {
+        const spec = (diceSpec || "d6").toLowerCase().trim();
+        let count, sides;
+        if (spec.startsWith("d")) {
+          count = 1;
+          sides = parseInt(spec.slice(1), 10);
+        } else {
+          const parts = spec.split("d");
+          count = parseInt(parts[0], 10);
+          sides = parseInt(parts[1], 10);
+        }
+        let total = 0;
+        for (let i = 0; i < count; i++) {
+          total += Math.floor(Math.random() * sides) + 1;
+        }
+        return total;
+      }
+
+      function setStory(data, fileName) {
+        story = data;
+        nodeMap = {};
+        currentId = null;
+
+        if (!story || !Array.isArray(story.nodes)) {
+          storyStatusEl.textContent = "Hatalı JSON: 'nodes' yok";
+          stepTitleEl.textContent = "Senaryo yüklenemedi";
+          stepTextEl.textContent =
+            "JSON formatı: { start: 'id', nodes: [ {id, type, ...}, ... ] } olmalı.";
+          return;
+        }
+
+        story.nodes.forEach((n) => {
+          if (n.id) nodeMap[n.id] = n;
+        });
+
+        currentId = story.start || (story.nodes[0] && story.nodes[0].id);
+
+        storyStatusEl.textContent = "Senaryo yüklendi: " + (fileName || "");
+        footerMsgEl.textContent = `Başlangıç: ${currentId} • Toplam sahne: ${story.nodes.length}`;
+        log(
+          "▶ Senaryo yüklendi: " +
+            (fileName || "") +
+            " | Başlangıç: " +
+            currentId
+        );
+
+        renderNode();
+      }
+
+      function renderNode() {
+        uiAreaEl.innerHTML = "";
+
+        if (!currentId || !nodeMap[currentId]) {
+          stepTitleEl.textContent = "Senaryo bitti veya geçersiz id";
+          stepTextEl.textContent =
+            "Farklı bir rota için sayfayı yenileyebilir veya başka bir JSON seçebilirsin.";
+          stepTypeEl.textContent = "Bitti";
+          stepCounterEl.textContent = "Adım: -";
+
+          const restartBtn = document.createElement("button");
+          restartBtn.className = "btn btn-full";
+          restartBtn.textContent = "Senaryoyu baştan başlat";
+          restartBtn.onclick = () => {
+            if (!story) return;
+            currentId = story.start || (story.nodes[0] && story.nodes[0].id);
+            log("— Senaryoyu yeniden başlattın —");
+            renderNode();
+          };
+          uiAreaEl.appendChild(restartBtn);
+          return;
+        }
+
+        const node = nodeMap[currentId];
+        const type = (node.type || "narrative").toLowerCase();
+
+        stepTitleEl.textContent = node.title || currentId;
+        stepTextEl.textContent = node.text || "";
+        stepCounterEl.textContent = "Adım: " + currentId;
+        stepTypeEl.textContent =
+          type === "narrative"
+            ? "Anlatım"
+            : type === "choice"
+            ? "Seçim"
+            : type === "roll"
+            ? "Zar"
+            : type === "end"
+            ? "Final"
+            : type.toUpperCase();
+
+        // NARRATIVE
+        if (type === "narrative") {
+          const btn = document.createElement("button");
+          btn.className = "btn btn-primary btn-full";
+          btn.textContent = "Devam et";
+          btn.onclick = () => {
+            log("• Anlatım okundu → " + currentId);
+            currentId = node.next || null;
+            renderNode();
+          };
+          uiAreaEl.appendChild(btn);
+          return;
+        }
+
+        // CHOICE
+        if (type === "choice") {
+          const list = document.createElement("div");
+          list.className = "choice-list";
+
+          (node.choices || []).forEach((choice) => {
+            const btn = document.createElement("button");
+            btn.className = "choice-btn";
+            btn.innerHTML = `<strong>${choice.key}</strong><span>${choice.text}</span>`;
+            btn.onclick = () => {
+              log(`• Seçim (${currentId}): ${choice.key}) ${choice.text}`);
+              uiAreaEl.innerHTML = "";
+
+              const res = document.createElement("p");
+              res.style.fontSize = "0.82rem";
+              res.style.marginBottom = "8px";
+              res.textContent = choice.result_text || "";
+              uiAreaEl.appendChild(res);
+
+              const contBtn = document.createElement("button");
+              contBtn.className = "btn btn-primary btn-full";
+              contBtn.textContent = "Devam et";
+              contBtn.onclick = () => {
+                currentId = choice.next || node.next || null;
+                renderNode();
+              };
+              uiAreaEl.appendChild(contBtn);
+            };
+            list.appendChild(btn);
+          });
+
+          uiAreaEl.appendChild(list);
+          return;
+        }
+
+        // ROLL
+        if (type === "roll") {
+          const diceSpec = node.dice || "d6";
+          const target = typeof node.target === "number" ? node.target : 4;
+
+          const info = document.createElement("div");
+          info.className = "dice-info";
+          info.textContent = `${diceSpec} zarı atılacak. Hedef ≥ ${target}.`;
+          uiAreaEl.appendChild(info);
+
+          const resultP = document.createElement("div");
+          resultP.className = "dice-result";
+          uiAreaEl.appendChild(resultP);
+
+          let rolled = false;
+          let nextId = null;
+
+          const rollBtn = document.createElement("button");
+          rollBtn.className = "btn btn-primary btn-full";
+          rollBtn.innerHTML = "🎲 Zar at";
+          rollBtn.onclick = () => {
+            if (!rolled) {
+              // İlk tık: zar at
+              const roll = rollDice(diceSpec);
+              const success = roll >= target;
+              rolled = true;
+
+              resultP.className =
+                "dice-result " + (success ? "success" : "fail");
+              resultP.textContent = `Zar sonucu: ${roll} → ${
+                success ? "BAŞARI" : "BAŞARISIZLIK"
+              }`;
+
+              log(
+                `• Zar (${currentId}/${diceSpec}): ${roll} (${
+                  success ? "başarılı" : "başarısız"
+                })`
+              );
+
+              if (node.success_text || node.fail_text) {
+                const extra = document.createElement("p");
+                extra.style.marginTop = "3px";
+                extra.style.fontSize = "0.82rem";
+                extra.textContent = success
+                  ? node.success_text || ""
+                  : node.fail_text || "";
+                uiAreaEl.appendChild(extra);
+              }
+
+              nextId = success
+                ? node.next_success || node.next || null
+                : node.next_fail || node.next || null;
+
+              rollBtn.textContent = "Devam et";
+            } else {
+              // İkinci tık: sıradaki node'a geç
+              currentId = nextId;
+              renderNode();
+            }
+          };
+          uiAreaEl.appendChild(rollBtn);
+          return;
+        }
+
+        // END
+        if (type === "end") {
+          log("◆ Final: " + (node.ending_key || currentId));
+
+          const msg = document.createElement("p");
+          msg.className = "dice-info";
+          msg.textContent =
+            "Bu bir son. Farklı seçimler ve zarlarla başka finalleri görebilirsin.";
+          uiAreaEl.appendChild(msg);
+
+          const restartBtn = document.createElement("button");
+          restartBtn.className = "btn btn-full";
+          restartBtn.textContent = "Baştan oyna";
+          restartBtn.onclick = () => {
+            currentId = story.start || (story.nodes[0] && story.nodes[0].id);
+            log("— Oyunu yeniden başlattın —");
+            renderNode();
+          };
+          uiAreaEl.appendChild(restartBtn);
+          return;
+        }
+
+        // Bilinmeyen tip
+        const unk = document.createElement("p");
+        unk.textContent = "Bilinmeyen node tipi: " + type;
+        uiAreaEl.appendChild(unk);
+      }
+
+      function loadScenarioFromSelect() {
+        const file = scenarioSelEl.value;
+        if (!file) return;
+        storyStatusEl.textContent = "Senaryo yükleniyor...";
+        log("… '" + file + "' yükleniyor");
+
+        fetch(file)
+          .then((r) => {
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            return r.json();
+          })
+          .then((data) => setStory(data, file))
+          .catch((err) => {
+            console.error("Senaryo yüklenemedi:", err);
+            storyStatusEl.textContent = "Yükleme hatası";
+            stepTitleEl.textContent = "JSON yüklenemedi";
+            stepTextEl.textContent =
+              "HTML, JSON dosyaları ve styles.css aynı klasörde olmalı.\n" +
+              "Eğer dosyayı doğrudan çift tıklayıp açıyorsan (file://),\n" +
+              "bazı tarayıcılarda fetch() engellenir.\n" +
+              "Küçük bir yerel sunucu ile (ör: python -m http.server) açman gerekebilir.";
+          });
+      }
+
+      loadBtn.addEventListener("click", loadScenarioFromSelect);
+    </script>
+  </body>
+</html>

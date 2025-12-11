@@ -1,70 +1,375 @@
-[
-  {
-    "id": 1,
-    "title": "Zeta Primus'a İniş",
-    "text": "Üç galaksinin de gözü bu gezegende. Orion İttifakı, Lyra Kollektifi ve Drakon Birliği, gezegenin farklı bölgelerini işgal etmiş durumda.\n\nSen, tarafsız İstasyon Komutanlığı adına görev alan bir saha ajanısın. Şu an gezegen yörüngesindeki küçük bir üs gemisindesin. İlk görevin, yüzeye inip güvenli bölgedeki operasyon üssüne ulaşmak.",
-    "type": "narrative"
-  },
-  {
-    "id": 2,
-    "title": "Güvenli Bölgeye Yaklaşım",
-    "text": "Keşif shuttle'ına biniyorsun. İniş rotası boyunca üç fraksiyonun da sinyallerini alıyorsun.\n\nOrion İttifakı kuzey manyetik alanını kontrol ediyor. Lyra Kollektifi batıdaki veri kulelerini ele geçirmiş. Drakon Birliği ise güneydeki eski maden hatlarını kullanıyor.\n\nİstasyon, hangi hatta yaklaşacağına senin karar vermeni istiyor.",
-    "type": "choice",
-    "choices": [
-      {
-        "key": "A",
-        "text": "Orion İttifakı'nın kontrol ettiği kuzey koridoruna yaklaş.",
-        "result_text": "Kuzey koridoru daha iyi korunuyor ama aynı zamanda daha düzenli. Radarında net devriye rotaları görüyorsun."
-      },
-      {
-        "key": "B",
-        "text": "Lyra Kollektifi'nin veri kulelerinin yakınından dolaş.",
-        "result_text": "Veri kuleleri parazit yayıyor, sensörlerin bozuluyor ama keşfedilme riskin daha düşük."
-      },
-      {
-        "key": "C",
-        "text": "Drakon Birliği'nin maden hatlarına paralel alçak uçuş yap.",
-        "result_text": "Maden tünelleri yüzeyi parçalamış. Riskli ama araya saklanabileceğin çok kırık yüzey var."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "Atmosfere Giriş - İlk Zar",
-    "text": "Atmosfere girerken shuttle şiddetle sallanıyor. Seçtiğin rotaya göre savunma sistemleri seni taramaya başlıyor.\n\nŞimdi pilotaj becerine güvenmen gerekiyor. Küçük manevralarla savunma ağlarının arasından sıyrılmaya çalışacaksın.",
-    "type": "roll",
-    "dice": "d6",
-    "target": 4,
-    "success_text": "Shuttle'ı ustaca kontrol ediyorsun. Birkaç lazer izini kalkanların emiyor ama ciddi bir hasar almadan güvenli bölgenin yakınlarına inmeyi başarıyorsun.",
-    "fail_text": "Savunma sistemleri shuttle'ı kilitliyor. Acil kaçış manevrası yapıp planlanandan daha uzak, yarı düşman hattında bir noktaya sert iniş yapıyorsun. Görev daha zor hale geldi."
-  },
-  {
-    "id": 4,
-    "title": "İlk Görev Brifingi",
-    "text": "Nihayet yüzeye ulaştın. Zemin, eski bombardıman kraterleriyle dolu. Ufukta Orion, Lyra ve Drakon bayraklarını aynı anda görebiliyorsun.\n\nGüvenli bölgedeki saha komutanı, ilk görevin için üç seçenek sunuyor:\n- Bir iletişim rölesi arızalanmış, onarılması gerekiyor.\n- Lyra'nın veri kulesinden şifreli paket almak mümkün olabilir.\n- Drakon devriyesi, maden hattı yakınında kaybolmuş; enkazı bulmak stratejik bilgi sağlayabilir.\n\nBu noktadan sonra senaryoyu uzatmak tamamen sana kalmış. story.json dosyasına yeni adımlar ekleyerek devam edebilirsin.",
-    "type": "choice",
-    "choices": [
-      {
-        "key": "A",
-        "text": "İletişim rölesini onarma görevini kabul et.",
-        "result_text": "Komutan, sana eski model bir bakım dronu ve koordinatları veriyor."
-      },
-      {
-        "key": "B",
-        "text": "Lyra veri kulesinden paket alma görevini seç.",
-        "result_text": "Gizlilik öncelikli. Hafif zırh ve sinyal bozucu modüller hazırlanıyor."
-      },
-      {
-        "key": "C",
-        "text": "Drakon devriyesinin enkazını araştırma görevini al.",
-        "result_text": "Bu görev riskli ama ödülü büyük olabilir. Sensör paketleri shuttle'a yükleniyor."
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "title": "Bölüm Sonu",
-    "text": "Buraya kadar ilk bölüm bitti. Buradan sonrası için yeni adımlar ekleyerek haftalık görevlerini oluşturabilirsin.\n\nHer yeni görev için yeni 'id' değerleriyle yeni nesneler ekle.",
-    "type": "end"
-  }
-]
+{
+  "start": "intro_orbit",
+  "nodes": [
+    {
+      "id": "intro_orbit",
+      "type": "narrative",
+      "title": "Yörüngede Sessizlik",
+      "text": "Zeta Primus, üç galaksinin de göz diktiği yaralı bir gezegen.\n\nOrion İttifakı kuzey manyetik alanlarını, Lyra Kollektifi batıdaki veri kulelerini, Drakon Birliği güneydeki maden hatlarını işgal etmiş durumda.\n\nSen, tarafsız İstasyon Komutanlığı'na bağlı bir saha ajanısın. Yörüngedeki küçük komuta gemisinin penceresinden aşağı bakarken, atmosferdeki yanık izlerini ve eski bombardıman halkalarını görüyorsun.\n\nBugün, Zeta Primus'a ilk kez iniyorsun. Ve muhtemelen, bir daha hiçbir şey eskisi gibi olmayacak.",
+      "next": "briefing"
+    },
+    {
+      "id": "briefing",
+      "type": "choice",
+      "title": "Görev Brifingi",
+      "text": "Komuta odasında holografik bir harita açılıyor. Masanın üzerinde üç renkli saha yanıp sönüyor.\n\nOrion bölgeleri: Disiplinli, ağır zırhlı, açık ama ölümcül.\nLyra alanları: Görünmez sinyaller, veri kuleleri ve sızma uzmanları.\nDrakon hatları: Yeraltı tünelleri, maden galerileri ve kayıp konvoylar.\n\nKomutanın sesi soğuk:\n\"Tarafsızsan, önce nereye bakman gerektiğine de kendin karar vermelisin.\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Orion hattını seç: açık cephe, temiz çizgiler.",
+          "result_text": "Disiplinli düşman, tahmin edilebilir risk demektir.",
+          "next": "shuttle_launch_orion"
+        },
+        {
+          "key": "B",
+          "text": "Lyra gölgelerini seç: sinyallerin arasından yürümek.",
+          "result_text": "Görünmemek, bazen görünmekten daha zordur.",
+          "next": "shuttle_launch_lyra"
+        },
+        {
+          "key": "C",
+          "text": "Drakon maden hatlarını seç: kaosun içinden geçmek.",
+          "result_text": "Kırık taşların ve eski patlamaların arasından süzüleceksin.",
+          "next": "shuttle_launch_drakon"
+        }
+      ]
+    },
+
+    {
+      "id": "shuttle_launch_orion",
+      "type": "roll",
+      "title": "Orion Koridoru",
+      "text": "Shuttle, Orion devriye rotalarının arasından süzülüyor. Radar ekranın kırmızı noktalarla dolu.\n\nSavunma ağları, seni sıradan bir enkaz sanarsa geçersin; ama küçük bir hata tüm sistemi sana kilitler.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "İmza profilini minimumda tutuyorsun. Birkaç lazer taraması yakınından geçip gidiyor; kimse ne gördüğünden emin değil.",
+      "fail_text": "Bir devriye seni fark ediyor. Kalkanlara çarpan atış shuttle'ı sarsıyor; acil iniş yapmak zorunda kalıyorsun.",
+      "next_success": "landing_clear",
+      "next_fail": "landing_damaged"
+    },
+    {
+      "id": "shuttle_launch_lyra",
+      "type": "roll",
+      "title": "Lyra Sinyal Fırtınası",
+      "text": "Lyra veri kuleleri gökyüzüne görünmez bir ağ örmüş. Sensörlerin parazit yüzünden delirmiş gibi davranıyor.\n\nGürültünün içindeki tek doğru frekansı bulabilirsen, kuleler seni fark etmeyecek.",
+      "dice": "d6",
+      "target": 3,
+      "success_text": "Sinyal karmaşasının içinde berrak, ince bir tını yakalıyorsun. Shuttle'ı o frekansa kilitliyorsun.",
+      "fail_text": "Yanlış frekansı takip ediyorsun. Kulelerin algı konisine giriyor ve plan dışı sert bir manevrayla savruluyorsun.",
+      "next_success": "landing_clear",
+      "next_fail": "landing_offset"
+    },
+    {
+      "id": "shuttle_launch_drakon",
+      "type": "roll",
+      "title": "Drakon Maden Yarıkları",
+      "text": "Aşağıda, savaşla birleşmiş jeolojik yara izleri… Eski maden galerileri yüzeyi delik deşik etmiş.\n\nAlçak irtifada kayaların arasında dans ediyorsun. Küçük bir hesap hatası, seni duvara çivileyebilir.",
+      "dice": "d6",
+      "target": 5,
+      "success_text": "Saniyelik düzeltmelerle shuttle'ı yarıkların üzerinden yürütüyorsun. Radar imzan maden gürültüsü içinde kayboluyor.",
+      "fail_text": "Bir kaya çıkıntısını geç fark ediyorsun. Gövdeye vuran darbe uyarı ışıklarını yakıyor.",
+      "next_success": "landing_clear",
+      "next_fail": "landing_crash_near_mines"
+    },
+
+    {
+      "id": "landing_clear",
+      "type": "narrative",
+      "title": "Temiz İniş",
+      "text": "Shuttle, eski bir bakım platformuna yumuşak bir iniş yapıyor. Hidrolik ayaklar metal zemine otururken kabini sessizlik kaplıyor.\n\nRüzgâr, ozon ve yanık metal kokusunu birlikte taşıyor. Uzakta, üç fraksiyonun bayrakları aynı gökyüzüne saplanmış gibi duruyor.",
+      "next": "first_mission_choice"
+    },
+    {
+      "id": "landing_damaged",
+      "type": "narrative",
+      "title": "Hasarlı İniş",
+      "text": "Shuttle, kontrolü zor kazanıyor ve platforma sertçe oturuyor.\n\nGövde üzerinde uzun bir yanık izi, içeri sızan ince bir duman çizgisi var. Kalkan jeneratörün zayıflamış durumda.\n\nBugünden sonra her risk biraz daha ağır hissedilecek.",
+      "next": "first_mission_choice"
+    },
+    {
+      "id": "landing_offset",
+      "type": "narrative",
+      "title": "Sapmış İniş",
+      "text": "Acil kaçış manevrası sonrası, planladığın bölgeden kilometrelerce uzakta, haritada gri bırakılmış bir ara bölgede iniyorsun.\n\nHiçbir fraksiyonun net olarak sahiplenmediği, sessiz ama tehlikeli bir boşluk.",
+      "next": "first_mission_choice"
+    },
+    {
+      "id": "landing_crash_near_mines",
+      "type": "narrative",
+      "title": "Madenlerin Gölgesinde Sert İniş",
+      "text": "Shuttle, Drakon maden yarıklarının kenarına sert bir iniş yapıyor. Kabin duvarları bir süre titremeye devam ediyor.\n\nKontrol paneli 'Uçuşa elverişsiz' uyarısı veriyor. Kaçış yolun, en azından şimdilik, bu gezegenle birlikte kilitlendi.",
+      "next": "first_mission_choice"
+    },
+
+    {
+      "id": "first_mission_choice",
+      "type": "choice",
+      "title": "İlk Operasyon",
+      "text": "Saha komutanlığından üç acil görev talebi geliyor:\n\n1) Kuzeydeki iletişim rölesi sustu; savunma ağı kör.\n2) Lyra veri kulelerinden birinde kaynağı bilinmeyen bir paket akışı tespit edildi.\n3) Drakon devriyesinden gelen son sinyal, yeraltında kayboldu.\n\n\"İlk adım, hikâyenin tonunu belirler,\" diyor komutan. \"Seçimini yap.\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "İletişim rölesini onarma görevini al.",
+          "result_text": "Önce sesleri geri getirmeyi seçiyorsun.",
+          "next": "relay_approach"
+        },
+        {
+          "key": "B",
+          "text": "Lyra veri paketinin izini sür.",
+          "result_text": "Bilginin silahtan keskin olduğunu düşünüyorsun.",
+          "next": "lyra_tower_approach"
+        },
+        {
+          "key": "C",
+          "text": "Drakon devriyesinin enkazını araştır.",
+          "result_text": "Kayıpların geride bıraktığı boşluk seni çağırıyor.",
+          "next": "drakon_wreck_approach"
+        }
+      ]
+    },
+
+    {
+      "id": "relay_approach",
+      "type": "narrative",
+      "title": "Röle İstasyonuna Yol",
+      "text": "Kuzey ufkunda, paramparça bir anten dizisi siluet gibi yükseliyor. Kopmuş kablolar, rüzgârda çalan metalik çanlar gibi sallanıyor.\n\nRölenin gölgesinde küçük bir Orion kampı kurulduğunu fark ediyorsun.",
+      "next": "relay_stealth_or_bribe"
+    },
+    {
+      "id": "relay_stealth_or_bribe",
+      "type": "choice",
+      "title": "Sessizlik mi, Pazarlık mı?",
+      "text": "Ya gölgelerden sızacak, Orion'u fark ettirmeden atlatacaksın;\nYa da tarafsızlık rozetini gösterip masaya oturacaksın.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Gizlice sızmayı dene.",
+          "result_text": "Kelimeler yerine gölgeleri seçiyorsun.",
+          "next": "relay_stealth_roll"
+        },
+        {
+          "key": "B",
+          "text": "Orion komutanıyla konuş, diplomasi dene.",
+          "result_text": "Bazı savaşlar, cümlelerle kazanılır ya da kaybedilir.",
+          "next": "relay_diplomacy_roll"
+        }
+      ]
+    },
+    {
+      "id": "relay_stealth_roll",
+      "type": "roll",
+      "title": "Gölgelere Karışmak",
+      "text": "Sis, rölenin etrafını sarıyor. Orion nöbetçilerinin lazer nişangahları sisin içinde kırmızı çizgiler çiziyor.\n\nBir adım daha atarsan ya röle paneline uzanacaksın ya da sirenler senin için çalacak.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Taşların arasından sessizce süzülüyorsun. Röle paneline ulaşıp devreleri yeniden yönlendiriyorsun; kimse tam ne olduğunu anlamıyor.",
+      "fail_text": "Yanlış zamanda kıpırdayan bir gölge… Bir nöbetçi seni fark ediyor ve alarm bağırarak yükseliyor.",
+      "next_success": "relay_fixed_secretly",
+      "next_fail": "caught_by_orion"
+    },
+    {
+      "id": "relay_diplomacy_roll",
+      "type": "roll",
+      "title": "Orion Pazarlığı",
+      "text": "Orion komutanı, zırhının içinde dimdik duruyor. Tarafsızlık rozetine şüpheyle bakıyor.\n\n\"Bu röleyi çalıştırmak hepimizin işine gelir,\" diyorsun. \"İstersen bunu senin başarın sayalım.\"",
+      "dice": "d6",
+      "target": 3,
+      "success_text": "Komutan kısa bir sessizlikten sonra başını sallıyor. Röleyi birlikte onarırken aranızda kırılgan bir güven köprüsü kuruluyor.",
+      "fail_text": "Komutan dudaklarını sıkıyor. \"Tarafsızlık oyunu bittiğinde, seni kimin tarafında sayacağız, ajan?\" diyor.",
+      "next_success": "relay_fixed_alliance",
+      "next_fail": "caught_by_orion"
+    },
+    {
+      "id": "relay_fixed_secretly",
+      "type": "narrative",
+      "title": "Sessizce Onarılan Ağ",
+      "text": "Röle sessizce devreye giriyor. Gökyüzündeki sessizlik yarılıyor; istasyon ağına yeni kanallar açılıyor.\n\nArtık gezegenin birçok köşesinden fısıltıları duyabileceksin.",
+      "next": "midpoint_convergence"
+    },
+    {
+      "id": "relay_fixed_alliance",
+      "type": "narrative",
+      "title": "Kırılgan İttifak",
+      "text": "Orion mühendisleri ile yan yana çalışıyorsun. Panel yeniden hayat bulduğunda komutan sana dönüyor:\n\n\"Bu iyiliği unutmayacağız,\" diyor. \"Ama hangi savaşta hatırlayacağımıza henüz karar vermedik.\"",
+      "next": "midpoint_convergence"
+    },
+
+    {
+      "id": "lyra_tower_approach",
+      "type": "narrative",
+      "title": "Veri Kulesinin Gölgesi",
+      "text": "Lyra veri kulesi göğe ince bir cam iğne gibi yükseliyor. İçinde mavi kod şimşekleri gibi çakan veri akışlarını görüyorsun.\n\nİç ağa bağlandığında sana ping atan bir kullanıcı adı beliriyor: \"_PRIMUS-GHOST_\".",
+      "next": "lyra_inside_shadow"
+    },
+    {
+      "id": "lyra_inside_shadow",
+      "type": "choice",
+      "title": "İçeriden Gelen Fısıltı",
+      "text": "Ekranında beliren mesaj kısa:\n\n\"Tarafsızsan, bu veriyi birlikte serbest bırakalım. Yoksa kasaları kilitli tutmayı mı seversin?\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Primus-Ghost'a güven, birlikte hareket et.",
+          "result_text": "Gölgeyle el sıkmak herkesin yapacağı bir şey değil.",
+          "next": "lyra_ghost_roll"
+        },
+        {
+          "key": "B",
+          "text": "Tek başına ilerle, veriyi sadece istasyon için çek.",
+          "result_text": "Kimseye tam ait olmamayı seçiyorsun.",
+          "next": "lyra_solo_heist_roll"
+        }
+      ]
+    },
+    {
+      "id": "lyra_ghost_roll",
+      "type": "roll",
+      "title": "Gölgeyle Ortaklık",
+      "text": "Primus-Ghost, kule çekirdeğinin derinliklerine açılan bir tünel gösteriyor. Komutlarınız birbirine dolanarak ilerliyor.\n\nEğer uyumlu hareket edebilirseniz, veriyi üç fraksiyonun zincirlerinden koparacaksınız.",
+      "dice": "d6",
+      "target": 4,
+      "success_text": "Komutlarınız kod seli içinde zarif bir dansa dönüşüyor. Veriler kilitlerden kopup tarafsız kanallara dağılıyor.",
+      "fail_text": "Ghost, son anda rotayı değiştiriyor. Bir an için kimin kimi kullandığını ayırt edemiyorsun.",
+      "next_success": "ending_data_liberation",
+      "next_fail": "ending_data_betrayal"
+    },
+    {
+      "id": "lyra_solo_heist_roll",
+      "type": "roll",
+      "title": "Tek Kişilik Veri Baskını",
+      "text": "Kule çekirdeğine yalnız iniyorsun. Paneller, yüzünü değil, niyetini yansıtan aynalar gibi.\n\nÜç fraksiyonun güvenlik algoritmaları seni tartıyor.",
+      "dice": "d6",
+      "target": 5,
+      "success_text": "Soğukkanlılığın makineleri bile ikna ediyor. Veri paketini iz bırakmadan çekiyorsun.",
+      "fail_text": "Gözünden kaçan bir katman oluyor. Bir log dosyasına adın düşüyor.",
+      "next_success": "ending_data_kept_secret",
+      "next_fail": "ending_marked_hacker"
+    },
+
+    {
+      "id": "drakon_wreck_approach",
+      "type": "narrative",
+      "title": "Maden Hattında Enkaz",
+      "text": "Yeraltı galerisi sarı-turuncu sisle dolu. Drakon devriyesinin zırhlı aracı, çöken tavanın altında duvara sıkışmış.\n\nİçeride, son anda kaydedilmiş bir ses günlüğü buluyorsun:\n\n\"Zeta Primus'ta savaş, sadece toprak için değil. Çekirdeğin altında başka bir şey var… Biri bizi izliyor.\"",
+      "next": "drakon_log_choice"
+    },
+    {
+      "id": "drakon_log_choice",
+      "type": "choice",
+      "title": "Son Kayıt",
+      "text": "Günlüğü istasyona göndereceksin. Ama nasıl?\n\nOlduğu gibi iletirsen, Drakon iç çatlağı ve bu 'dördüncü göz' açığa çıkacak.\nBazı kısımları kesersen, gerçeği eğip bükmüş olacaksın.",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Günlüğü olduğu gibi ilet.",
+          "result_text": "Gerçek, bütün ağırlığıyla üzerlerine çökecek.",
+          "next": "ending_truth_exposed"
+        },
+        {
+          "key": "B",
+          "text": "Bazı kısımları düzenle, sansürle.",
+          "result_text": "Herkesi biraz koruyan ama herkesi biraz yaralayan bir karar.",
+          "next": "ending_truth_distorted"
+        }
+      ]
+    },
+
+    {
+      "id": "midpoint_convergence",
+      "type": "narrative",
+      "title": "Çatışan Frekanslar",
+      "text": "Röle devreye girdikten sonra aynı anda üç sinyal düşüyor: Orion, Lyra ve Drakon.\n\nHepsi Zeta Primus çekirdeğinde tanımlanamayan bir enerji imzası tespit ettiklerini söylüyor.\n\nSavaşın gerçek sebebi bu mu, yoksa yan ürün mü? Cevap için çekirdeğe inmen gerekecek.",
+      "next": "core_choice"
+    },
+    {
+      "id": "core_choice",
+      "type": "choice",
+      "title": "Çekirdeğe Yol",
+      "text": "Komutanlık son bir soru soruyor:\n\n\"Bu imzayı açığa çıkarırsan üç galaksinin dengesi değişebilir. Ama bunu kiminle yapacağın, tarihe nasıl geçeceğini belirleyecek.\"",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Orion birlikleriyle çekirdeğe in.",
+          "result_text": "Zırhlı bir hakikat.",
+          "next": "ending_core_with_orion"
+        },
+        {
+          "key": "B",
+          "text": "Lyra veri mimarlarıyla çekirdeğe bağlan.",
+          "result_text": "Gerçeği kod üzerinden görmek.",
+          "next": "ending_core_with_lyra"
+        },
+        {
+          "key": "C",
+          "text": "Yalnız in.",
+          "result_text": "Bazı gerçekler tek tanık ister.",
+          "next": "ending_core_alone"
+        }
+      ]
+    },
+
+    {
+      "id": "ending_data_liberation",
+      "type": "end",
+      "title": "Final: Serbest Veri, Serbest Gezegen",
+      "text": "Veri, üç fraksiyonun kasalarından kopup tarafsız kanallara akıyor. Zeta Primus'un gerçek tarihi propagandanın sisinden sıyrılıyor.\n\nSavaş bitmedi; ama artık insanlar kimin için savaştığını biliyor.",
+      "ending_key": "data_liberation"
+    },
+    {
+      "id": "ending_data_betrayal",
+      "type": "end",
+      "title": "Final: Gölgenin İhaneti",
+      "text": "Primus-Ghost veriyi kendi gizli ağına yönlendiriyor. Terminalinde beliren son cümle şu:\n\n\"Bazen tarafsızlık, en güzel maskedir. Teşekkürler ajan.\"",
+      "ending_key": "data_betrayal"
+    },
+    {
+      "id": "ending_data_kept_secret",
+      "type": "end",
+      "title": "Final: Saklı Dosyalar",
+      "text": "Veri paketini istasyonun en karanlık kasalarına kilitliyorsun. Resmi raporda görev, sıradan bir keşif olarak geçiyor.\n\nAma geceleri gözlerini kapadığında, eksik satırlar zihninde kendiliğinden tamamlanıyor.",
+      "ending_key": "data_kept_secret"
+    },
+    {
+      "id": "ending_marked_hacker",
+      "type": "end",
+      "title": "Final: İşaretlenmiş Sızmacı",
+      "text": "Bir yerlerde bir güvenlik subayı log dosyasını açıyor. Senin imzan kırmızıyla işaretlenmiş.\n\nZeta Primus savaşı bitse bile, \"o ajan\" hikâyelerde yaşamaya devam edecek.",
+      "ending_key": "marked_hacker"
+    },
+    {
+      "id": "ending_truth_exposed",
+      "type": "end",
+      "title": "Final: Açığa Çıkan Çekirdek",
+      "text": "Drakon günlüğü olduğu gibi yayınlanıyor. Üç fraksiyon da çekirdeğin altında 'dördüncü bir göz' olduğunu öğreniyor.\n\nSavaş artık sadece gezegen için değil, görünmeyen bir izleyici için de veriliyor. Sen, bu perdenin arkasını açan kişisin.",
+      "ending_key": "truth_exposed"
+    },
+    {
+      "id": "ending_truth_distorted",
+      "type": "end",
+      "title": "Final: Kırık Ayna",
+      "text": "Günlüğü düzenleyip öyle gönderiyorsun. Her fraksiyon, metinden sadece görmek istediğini okuyor.\n\nZeta Primus'un gerçeği, kırık aynaların arasında kayboluyor.",
+      "ending_key": "truth_distorted"
+    },
+    {
+      "id": "ending_core_with_orion",
+      "type": "end",
+      "title": "Final: Zırhlı Hakikat",
+      "text": "Orion birlikleriyle çekirdeğe indiğinde seni devasa bir mekanik kalp karşılıyor. İçinde üç galaksinin de imzasını taşıyan eski bir anlaşma protokolü çalışıyor.\n\nOrion, bu çekirdeği korumayı ve masaya yeniden oturmayı seçiyor. Savaş yavaşlıyor, ama bitmiyor.",
+      "ending_key": "core_with_orion"
+    },
+    {
+      "id": "ending_core_with_lyra",
+      "type": "end",
+      "title": "Final: Kodun Hatırası",
+      "text": "Lyra mimarlarıyla çekirdeğe bağlandığında Zeta Primus'un bütün tarihi gözlerinin önünden kod satırları olarak akıp geçiyor.\n\nSonunda veri tek bir cümlede toplanıyor: \"Hiçbir galaksi, yalnızca kendisi için var olmaz.\" Bu cümle, yeni bir manifestoya dönüşüyor.",
+      "ending_key": "core_with_lyra"
+    },
+    {
+      "id": "ending_core_alone",
+      "type": "end",
+      "title": "Final: Yalnız Tanık",
+      "text": "Çekirdeğe yalnız indiğinde seni ne askerler, ne de kodlar karşılıyor. Sadece sessizlik ve gezegenin kalp atışına benzeyen derin bir titreşim.\n\nGördüklerini kimseye anlatmıyorsun. Zeta Primus'un sırrı, seninle birlikte yürümeye devam ediyor.",
+      "ending_key": "core_alone"
+    }
+  ]
+}
